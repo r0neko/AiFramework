@@ -22,10 +22,11 @@
     <ClCompile Include="framework_main.cpp" />
     <ClCompile Include="src\framework\win32\app_window_impl_win32.cpp" />
     <ClCompile Include="src\framework\base_app.cpp" />
+    <ClCompile Include="src\graphics\gl\quad_vertex_buffer_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\renderer_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\shader_program_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\win32\renderer_impl_wgl.cpp" />
-    <ClCompile Include="src\graphics\gl\vertex_impl_gl.cpp" />
+    <ClCompile Include="src\graphics\gl\vertex_buffer_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\shader_impl_gl.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
   </ItemGroup>
@@ -38,10 +39,12 @@
     <ClInclude Include="include\generic\singleton.hpp" />
     <ClInclude Include="include\generic\vector2.hpp" />
     <ClInclude Include="include\graphics\color.hpp" />
+    <ClInclude Include="include\graphics\quad_vertex_buffer.hpp" />
     <ClInclude Include="include\graphics\shader.hpp" />
     <ClInclude Include="include\graphics\shader_program.hpp" />
     <ClInclude Include="include\graphics\vertex.hpp" />
     <ClInclude Include="include\graphics\renderer.hpp" />
+    <ClInclude Include="include\graphics\vertex_buffer.hpp" />
     <ClInclude Include="include\platform\win32\wglext.hpp" />
   </ItemGroup>
   <ItemGroup>

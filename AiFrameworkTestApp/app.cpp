@@ -14,12 +14,13 @@ struct TestApp : BaseApp {
         s_text_2d.add_shader(Shader::from_file("2DTexture", "../AiFramework/shader/2DTexture.fs", ShaderType::FRAGMENT));
         s_text_2d.add_shader(Shader::from_file("2DTexture", "../AiFramework/shader/2DTexture.vs", ShaderType::VERTEX));
 
-        vertex_triangle.add_2d_vertex({-0.5f, -0.5f, colors::blue});  // lower right
-        vertex_triangle.add_2d_vertex({0.5f, -0.5f, colors::green}); // lower left
-        vertex_triangle.add_2d_vertex({0.0f, 0.5f, colors::red});   // top
+        vertex_quad.add_2d_vertex({0.5f, 0.5f, colors::green});   // top right
+        vertex_quad.add_2d_vertex({0.5f, -0.5f, colors::white});  // bottom right
+        vertex_quad.add_2d_vertex({-0.5f, -0.5f, colors::blue}); // bottom left
+        vertex_quad.add_2d_vertex({-0.5f, 0.5f, colors::red});  // top left
 
-        vertex_triangle.create();
-        vertex_triangle.resize();
+        vertex_quad.create();
+        vertex_quad.resize();
 
         return s_text_2d.compile();
     }
@@ -30,13 +31,13 @@ struct TestApp : BaseApp {
 
         s_text_2d.use();
 
-        vertex_triangle.draw();
+        vertex_quad.draw();
 
         window.renderer.swap_buffers();
     }
 
     ShaderProgram s_text_2d;
-    VertexBuffer vertex_triangle;
+    QuadVertexBuffer vertex_quad;
 };
 
 int main() {
