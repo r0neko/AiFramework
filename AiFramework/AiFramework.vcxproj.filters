@@ -45,6 +45,15 @@
     <ClCompile Include="src\graphics\gl\quad_vertex_buffer_impl_gl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphics\gl\vertex_impl_gl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\rectangle_component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\vertex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ai_framework.hpp">
@@ -92,9 +101,24 @@
     <ClInclude Include="include\graphics\quad_vertex_buffer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\components\rectangle_component.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\components\base_component.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\framework_main.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\framework\shaders_internal.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader\2DTexture.fs" />
-    <None Include="shader\2DTexture.vs" />
+    <None Include="shader\ColorVertex2D.fs" />
+    <None Include="shader\ColorVertex2D.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="shader\Vertex2D.vs" />
   </ItemGroup>
 </Project>

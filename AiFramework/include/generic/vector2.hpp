@@ -5,11 +5,15 @@
 
 namespace ai_framework {
     /// <summary>
-    /// Stores a bi-dimensional coordinate.
+    /// Stores a bi-dimensional point of the specified type.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     template <typename T>
     struct AI_API Vector2 {
+        Vector2()
+            : x(0), y(0) {
+        }
+
         Vector2(const Vector2<T> &rhs)
             : x(rhs.x), y(rhs.y) {
         }

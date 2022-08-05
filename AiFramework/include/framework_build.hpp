@@ -7,11 +7,19 @@
 #    define AI_API_EXPORT __declspec(dllexport)
 #endif
 
-#ifndef ENGINE_API
+#ifndef AI_API
 #    ifdef _BUILD_AI_FRAMEWORK
 #        define AI_API AI_API_EXPORT
 #    else
 #        define AI_API AI_API_IMPORT
+#    endif
+#endif
+
+#ifndef AI_API_EXTERN
+#    ifdef _BUILD_AI_FRAMEWORK
+#        define AI_API_EXTERN
+#    else
+#        define AI_API_EXTERN extern
 #    endif
 #endif
 

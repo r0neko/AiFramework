@@ -8,9 +8,20 @@
 #include <vector>
 
 namespace ai_framework::graphics {
-    struct AI_API QuadVertexBuffer : VertexBuffer {
+    template <typename T>
+    struct AI_API QuadVertexBuffer : VertexBuffer<T> {
+        void clear() {
+            VertexBuffer<T>::clear();
+            resize();
+        }
+
+        void add_vertex(const T &vertex) {
+            VertexBuffer<T>::add_vertex(vertex);
+            resize();
+        }
+
         bool created() const {
-            return ebo != -1 && VertexBuffer::created();
+            return ebo != -1 && VertexBuffer<T>::created();
         }
 
         void create();
@@ -19,8 +30,14 @@ namespace ai_framework::graphics {
         void bind();
         void draw();
 
+        bool can_render() {
+            return created() && VertexBuffer<T>::can_render();
+        }
+
       private:
         unsigned int ebo = -1;
+
+        // to do: make it dynamic
         std::vector<unsigned int> indices = {
             0,
             1,

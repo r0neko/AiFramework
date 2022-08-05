@@ -3,13 +3,14 @@
 
 using namespace ai_framework::graphics;
 
-void QuadVertexBuffer::create() {
+template <typename T>
+void QuadVertexBuffer<T>::create() {
     if (created())
         return;
 
-    VertexBuffer::create();
+    VertexBuffer<T>::create();
 
-    if (!VertexBuffer::created())
+    if (!VertexBuffer<T>::created())
         return;
 
     if (ebo == -1)
@@ -19,23 +20,34 @@ void QuadVertexBuffer::create() {
         return;
 }
 
-void QuadVertexBuffer::bind() {
-    VertexBuffer::bind();
+template <typename T>
+void QuadVertexBuffer<T>::bind() {
+    if (!created())
+        create();
+
+    VertexBuffer<T>::bind();
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
 }
 
-void QuadVertexBuffer::resize() {
+template <typename T>
+void QuadVertexBuffer<T>::resize() {
     bind();
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
 
-    VertexBuffer::resize();
+    VertexBuffer<T>::resize();
 }
 
-void QuadVertexBuffer::draw() {
+template <typename T>
+void QuadVertexBuffer<T>::draw() {
     // minimum 2 triangles are required
     if (indices.size() / 3 < 2)
         return;
 
+    VertexBuffer<T>::vertices[0].use_shader();
     bind();
-    glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, (GLsizei) indices.size(), GL_UNSIGNED_INT, 0);
 }
+
+// do template initialization to prevent linking errors
+template struct QuadVertexBuffer<Vertex2D>;
+template struct QuadVertexBuffer<ColorVertex2D>;

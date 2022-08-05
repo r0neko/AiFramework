@@ -2,19 +2,29 @@
 #define VERTEX_BUFFER_HPP
 
 #include <framework_build.hpp>
-
 #include <graphics/vertex.hpp>
 
 #include <vector>
 
 namespace ai_framework::graphics {
+    template <typename T>
     struct AI_API VertexBuffer {
-        void add_2d_vertex(const Vertex2D &vertex) {
+        void clear() {
+            vertices.clear();
+            resize();
+        }
+
+        void add_vertex(const T &vertex) {
             vertices.push_back(vertex);
+            resize();
         }
 
         bool created() const {
             return vbo != -1 && vao != -1 && is_created;
+        }
+
+        bool can_render() {
+            return created() && vertices.size() >= 1 && vertices[0].can_render();
         }
 
         void create();
@@ -29,9 +39,7 @@ namespace ai_framework::graphics {
         unsigned int vao = -1;
 
         bool is_created = false;
-
-      private:
-        std::vector<Vertex2D> vertices;
+        std::vector<T> vertices;
     };
 } // namespace ai_framework::graphics
 

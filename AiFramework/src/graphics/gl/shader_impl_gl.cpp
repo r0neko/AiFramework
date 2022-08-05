@@ -69,4 +69,6 @@ bool Shader::compile() {
 void Shader::destroy() {
     if (shader_id >= 0)
         glDeleteShader(shader_id);
+
+    is_compiled = false;
 }

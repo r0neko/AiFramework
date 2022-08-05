@@ -20,22 +20,29 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_main.cpp" />
+    <ClCompile Include="src\components\rectangle_component.cpp" />
     <ClCompile Include="src\framework\win32\app_window_impl_win32.cpp" />
     <ClCompile Include="src\framework\base_app.cpp" />
     <ClCompile Include="src\graphics\gl\quad_vertex_buffer_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\renderer_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\shader_program_impl_gl.cpp" />
+    <ClCompile Include="src\graphics\gl\vertex_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\win32\renderer_impl_wgl.cpp" />
     <ClCompile Include="src\graphics\gl\vertex_buffer_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\shader_impl_gl.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
+    <ClCompile Include="src\graphics\vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ai_framework.hpp" />
+    <ClInclude Include="include\components\base_component.hpp" />
+    <ClInclude Include="include\components\rectangle_component.hpp" />
     <ClInclude Include="include\framework\app_window.hpp" />
     <ClInclude Include="include\framework\base_app.hpp" />
     <ClInclude Include="include\framework\error_manager.hpp" />
+    <ClInclude Include="include\framework\shaders_internal.hpp" />
     <ClInclude Include="include\framework_build.hpp" />
+    <ClInclude Include="include\framework_main.hpp" />
     <ClInclude Include="include\generic\singleton.hpp" />
     <ClInclude Include="include\generic\vector2.hpp" />
     <ClInclude Include="include\graphics\color.hpp" />
@@ -48,8 +55,11 @@
     <ClInclude Include="include\platform\win32\wglext.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader\2DTexture.fs" />
-    <None Include="shader\2DTexture.vs" />
+    <None Include="shader\ColorVertex2D.fs" />
+    <None Include="shader\ColorVertex2D.vs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="shader\Vertex2D.vs" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
