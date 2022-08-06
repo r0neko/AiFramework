@@ -11,13 +11,13 @@ void ai_framework::init() {
         return;
 
     // don't load this 100 times! load it only once
-    auto color_v2d_fragment = Shader::from_file("ColorVertex2D", "E:/PROGRAME CSARP/AiEngine/AiFramework/shader/ColorVertex2D.fs", ShaderType::FRAGMENT);
+    auto color_v2d_fragment = Shader::from_file("ColorVertex2D", "../AiFramework/shader/ColorVertex2D.fs", ShaderType::FRAGMENT);
 
     if (!vertex_2d_shader.compiled()) {
         printf("Vertex2D shader compilation...\n");
 
         vertex_2d_shader.add_shader(color_v2d_fragment);
-        vertex_2d_shader.add_shader(Shader::from_file("Vertex2D", "E:/PROGRAME CSARP/AiEngine/AiFramework/shader/Vertex2D.vs", ShaderType::VERTEX));
+        vertex_2d_shader.add_shader(Shader::from_file("Vertex2D", "../AiFramework/shader/Vertex2D.vs", ShaderType::VERTEX));
 
         if (vertex_2d_shader.compile())
             printf("Vertex2D was compiled!\n");
@@ -29,7 +29,7 @@ void ai_framework::init() {
         printf("ColorVertex2D shader compilation...\n");
 
         color_vertex_2d_shader.add_shader(color_v2d_fragment);
-        color_vertex_2d_shader.add_shader(Shader::from_file("ColorVertex2D", "E:/PROGRAME CSARP/AiEngine/AiFramework/shader/ColorVertex2D.vs", ShaderType::VERTEX));
+        color_vertex_2d_shader.add_shader(Shader::from_file("ColorVertex2D", "../AiFramework/shader/ColorVertex2D.vs", ShaderType::VERTEX));
 
         if (color_vertex_2d_shader.compile())
             printf("ColorVertex2D was compiled!\n");
