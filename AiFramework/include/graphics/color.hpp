@@ -1,20 +1,37 @@
 #ifndef COLOR_HPP
 #define COLOR_HPP
 
+#include <stdint.h>
+#include <vector>
+
 namespace ai_framework::graphics {
 #pragma pack(push, 1)
+    struct RGBPixel {
+        uint8_t r, g, b;
+    };
+
     struct Color {
-        Color(int r, int g, int b, int a = 255)
+        Color()
+            : Color(0, 0, 0, 0) {
+        }
+
+        Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a = 255)
             : r(r), g(g), b(b), a(a) {
         }
 
         Color(const Color &rhs)
-            : r(rhs.r), g(rhs.g), b(rhs.b), a(rhs.a) {
+            : Color(rhs.r, rhs.g, rhs.b, rhs.a) {
         }
 
-        int r, g, b, a;
+        Color(const RGBPixel &rhs)
+            : Color(rhs.r, rhs.g, rhs.b) {
+        }
+
+        uint8_t r, g, b, a;
     };
 #pragma pack(pop)
+
+    using ColorPixelArray = std::vector<Color>;
 
     namespace colors {
         static Color black(0, 0, 0);

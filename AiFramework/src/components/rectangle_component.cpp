@@ -1,13 +1,15 @@
 #include <components/rectangle_component.hpp>
 #include <framework/shaders_internal.hpp>
 #include <graphics/quad_vertex_buffer.hpp>
+#include <graphics/texture.hpp>
 #include <graphics/vertex.hpp>
 
 using namespace ai_framework::components;
 using namespace ai_framework::graphics;
 using namespace ai_framework::shaders;
 
-QuadVertexBuffer<ColorVertex2D> quad_buffer;
+QuadVertexBuffer<TexturedVertex2D> quad_buffer;
+Texture test_tex{{"../AiFramework/assets/dank.png"}};
 
 bool r_comp_first_frame = true;
 
@@ -17,11 +19,12 @@ void RectangleComponent::draw() {
 
     quad_buffer.clear();
 
-    quad_buffer.add_vertex({0.5f, 0.5f, colors::red});    // top right
-    quad_buffer.add_vertex({0.5f, -0.5f, colors::green}); // bottom right
-    quad_buffer.add_vertex({-0.5f, -0.5f, colors::blue}); // bottom left
-    quad_buffer.add_vertex({-0.5f, 0.5f, colors::white}); // top left
+    quad_buffer.add_vertex({0.5f, 0.5f, colors::red, 1.0f, 1.0f});    // top right
+    quad_buffer.add_vertex({0.5f, -0.5f, colors::green, 1.0f, 0.0f}); // bottom right
+    quad_buffer.add_vertex({-0.5f, -0.5f, colors::blue, 0.0f, 0.0f}); // bottom left
+    quad_buffer.add_vertex({-0.5f, 0.5f, colors::white, 0.0f, 1.0f}); // top left
 
+    test_tex.use();
     quad_buffer.draw();
 
     r_comp_first_frame = false;

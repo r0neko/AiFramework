@@ -41,6 +41,22 @@ namespace ai_framework::graphics {
 
         Color color;
     };
+
+    struct TexturedVertex2D : ColorVertex2D {
+        TexturedVertex2D(float x, float y, const Color &color, float sx, float sy)
+            : ColorVertex2D(x, y, color), sx(sx), sy(sy) {
+        }
+
+        TexturedVertex2D(const FloatVector2 &vector, const Color &color, const FloatVector2 &sample)
+            : ColorVertex2D(vector, color), sx(sample.x), sy(sample.y) {
+        }
+
+        void set_attributes();
+        void use_shader();
+        bool can_render();
+
+        float sx, sy;
+    };
 #pragma pack(pop)
 } // namespace ai_framework::graphics
 

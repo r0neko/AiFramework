@@ -18,3 +18,11 @@ bool ColorVertex2D::can_render() {
 void ColorVertex2D::use_shader() {
     shaders::color_vertex_2d_shader.use();
 }
+
+bool TexturedVertex2D::can_render() {
+    return shaders::textured_vertex_2d_shader.compiled();
+}
+
+void TexturedVertex2D::use_shader() {
+    shaders::textured_vertex_2d_shader.use();
+}

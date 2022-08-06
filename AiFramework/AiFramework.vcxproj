@@ -26,10 +26,12 @@
     <ClCompile Include="src\graphics\gl\quad_vertex_buffer_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\renderer_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\shader_program_impl_gl.cpp" />
+    <ClCompile Include="src\graphics\gl\texture_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\vertex_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\win32\renderer_impl_wgl.cpp" />
     <ClCompile Include="src\graphics\gl\vertex_buffer_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\shader_impl_gl.cpp" />
+    <ClCompile Include="src\graphics\image.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\graphics\vertex.cpp" />
   </ItemGroup>
@@ -46,17 +48,22 @@
     <ClInclude Include="include\generic\singleton.hpp" />
     <ClInclude Include="include\generic\vector2.hpp" />
     <ClInclude Include="include\graphics\color.hpp" />
+    <ClInclude Include="include\graphics\image.hpp" />
     <ClInclude Include="include\graphics\quad_vertex_buffer.hpp" />
     <ClInclude Include="include\graphics\shader.hpp" />
     <ClInclude Include="include\graphics\shader_program.hpp" />
+    <ClInclude Include="include\graphics\texture.hpp" />
     <ClInclude Include="include\graphics\vertex.hpp" />
     <ClInclude Include="include\graphics\renderer.hpp" />
     <ClInclude Include="include\graphics\vertex_buffer.hpp" />
     <ClInclude Include="include\platform\win32\wglext.hpp" />
+    <ClInclude Include="include\vendor\stb\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\ColorVertex2D.fs" />
     <None Include="shader\ColorVertex2D.vs" />
+    <None Include="shader\TexturedVertex2D.fs" />
+    <None Include="shader\TexturedVertex2D.vs" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="shader\Vertex2D.vs" />

@@ -68,3 +68,4 @@ void VertexBuffer<T>::draw() {
 // do template initialization to prevent linking errors
 template struct VertexBuffer<Vertex2D>;
 template struct VertexBuffer<ColorVertex2D>;
+template struct VertexBuffer<TexturedVertex2D>;

@@ -54,6 +54,12 @@
     <ClCompile Include="src\graphics\vertex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\graphics\image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\gl\texture_impl_gl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ai_framework.hpp">
@@ -113,10 +119,21 @@
     <ClInclude Include="include\framework\shaders_internal.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\graphics\image.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vendor\stb\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\texture.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shader\ColorVertex2D.fs" />
     <None Include="shader\ColorVertex2D.vs" />
+    <None Include="shader\TexturedVertex2D.vs" />
+    <None Include="shader\TexturedVertex2D.fs" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="shader\Vertex2D.vs" />

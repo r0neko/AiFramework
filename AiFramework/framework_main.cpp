@@ -36,4 +36,16 @@ void ai_framework::init() {
         else
             printf("Failed to compile the ColorVertex2D shader!\n");
     }
+
+    if (!textured_vertex_2d_shader.compiled()) {
+        printf("TexturedVertex2D shader compilation...\n");
+
+        textured_vertex_2d_shader.add_shader(Shader::from_file("TexturedVertex2D", "../AiFramework/shader/TexturedVertex2D.fs", ShaderType::FRAGMENT));
+        textured_vertex_2d_shader.add_shader(Shader::from_file("TexturedVertex2D", "../AiFramework/shader/TexturedVertex2D.vs", ShaderType::VERTEX));
+
+        if (textured_vertex_2d_shader.compile())
+            printf("TexturedVertex2D was compiled!\n");
+        else
+            printf("Failed to compile the TexturedVertex2D shader!\n");
+    }
 }

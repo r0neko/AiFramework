@@ -51,3 +51,4 @@ void QuadVertexBuffer<T>::draw() {
 // do template initialization to prevent linking errors
 template struct QuadVertexBuffer<Vertex2D>;
 template struct QuadVertexBuffer<ColorVertex2D>;
+template struct QuadVertexBuffer<TexturedVertex2D>;
