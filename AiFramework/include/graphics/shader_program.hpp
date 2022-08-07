@@ -8,11 +8,22 @@
 #include <string>
 #include <vector>
 
+// #ifdef TARGET_OPENGL
+#include <glm/glm.hpp>
+// #endif
+
 namespace ai_framework::graphics {
+    struct AI_API IShaderProgram {
+        void set(std::string_view uniform, const glm::mat4 &mat);
+
+      protected:
+        unsigned int program_id = -1;
+    };
+
     /// <summary>
     /// This represents a shader program that links shaders and it offers basic operations.
     /// </summary>
-    struct AI_API ShaderProgram {
+    struct AI_API ShaderProgram : IShaderProgram {
         ShaderProgram(std::string_view name)
             : p_name(name) {
         }
@@ -29,7 +40,6 @@ namespace ai_framework::graphics {
         bool compile();
 
       private:
-        unsigned int program_id = -1;
         bool is_compiled = false;
 
         std::string p_name;

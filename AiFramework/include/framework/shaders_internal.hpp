@@ -9,6 +9,6 @@ namespace ai_framework::shaders {
     inline ShaderProgram vertex_2d_shader("Vertex2D");
     inline ShaderProgram color_vertex_2d_shader("ColorVertex2D");
     inline ShaderProgram textured_vertex_2d_shader("TexturedVertex2D");
-}
+} // namespace ai_framework::shaders
 
 #endif

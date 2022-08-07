@@ -9,7 +9,7 @@ namespace ai_framework {
     /// </summary>
     /// <typeparam name="T"></typeparam>
     template <typename T>
-    struct AI_API Vector2 {
+    struct Vector2 {
         Vector2()
             : x(0), y(0) {
         }

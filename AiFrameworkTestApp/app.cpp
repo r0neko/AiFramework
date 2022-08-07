@@ -7,20 +7,18 @@ using namespace ai_framework::components;
 struct TestApp : BaseApp {
     bool start() override {
         printf("App start!\n");
-        ai_framework::init();
         return true;
     }
 
     void draw() override {
-        window.renderer.set_context();
-        window.renderer.clear();
-
-        rect_component.draw();
-
-        window.renderer.swap_buffers();
+        rect.draw();
+        rect2.draw();
+        rect3.draw();
     }
 
-    RectangleComponent rect_component;
+    RectangleComponent rect{{100.f, 100.f}, {100.f, 200.f}, colors::blue};
+    RectangleComponent rect2{{200.f, 100.f}, {100.f, 200.f}, colors::yellow};
+    RectangleComponent rect3{{300.f, 100.f}, {100.f, 200.f}, colors::red};
 };
 
 int main() {

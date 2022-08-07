@@ -18,6 +18,7 @@ namespace ai_framework::framework {
         bool init();
         void destroy();
         void process_events();
+        void show();
 
         void set_title(std::string_view new_title);
 
@@ -32,6 +33,10 @@ namespace ai_framework::framework {
         virtual void resize(const IntVector2 &new_resolution) {
             size = new_resolution;
             renderer.resize(size);
+        }
+
+        IntVector2 get_size() const {
+            return size;
         }
 
         Renderer renderer;

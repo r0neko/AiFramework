@@ -40,6 +40,8 @@ namespace ai_framework::graphics {
         static Color red(255, 0, 0);
         static Color green(0, 255, 0);
         static Color blue(0, 0, 255);
+
+        static Color yellow(255, 255, 0);
     } // namespace colors
 } // namespace ai_framework::graphics
 

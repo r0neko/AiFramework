@@ -14,7 +14,7 @@ using namespace ai_framework::framework;
 
 // TO DO: look at https://stackoverflow.com/questions/46655372/create-modern-opengl-context-using-wgl for an reference on how to properly init WGL
 
-bool Renderer::init(opaque_t dev_context) {
+bool Renderer::init(opaque_t dev_context, const IntVector2 &size) {
     PIXELFORMATDESCRIPTOR pfd{0};
 
     device_context = dev_context;
@@ -55,7 +55,6 @@ bool Renderer::init(opaque_t dev_context) {
     auto wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC) wglGetProcAddress(
         "wglCreateContextAttribsARB");
 
-
     HGLRC new_render_context = wglCreateContextAttribsARB((HDC) device_context, NULL, attr);
     if (!new_render_context) {
         ErrorManager::instance().set_error(ErrorType::RENDERER_FAILURE, "Couldn't create a new valid GL3.2 context!");
@@ -79,6 +78,9 @@ bool Renderer::init(opaque_t dev_context) {
     printf("Loaded OpenGL %d.%d\n", GLVersion.major, GLVersion.minor);
     printf("OpenGL %s\n", glGetString(GL_VERSION));
 
+    this->size = size;
+    update_ortho();
+
     return is_init();
 }
 
@@ -100,9 +102,4 @@ void Renderer::destroy() {
 void Renderer::swap_buffers() {
     if (is_init())
         SwapBuffers((HDC) device_context);
-}
-
-void Renderer::resize(const IntVector2 &new_size) {
-    printf("Renderer resize: %ix%i\n", new_size.x, new_size.y);
-    set_viewport(new_size);
 }

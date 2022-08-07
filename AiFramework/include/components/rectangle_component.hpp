@@ -9,6 +9,14 @@ namespace ai_framework::components {
     /// DEVELOPMENT TEST COMPONENT: Draws a rectangle. For now, no coords are used.
     /// </summary>
     struct AI_API RectangleComponent : BaseComponent {
+        RectangleComponent(const FloatVector2 &pos, const FloatVector2 &sz, const Color &col)
+            : BaseComponent(pos, sz, col) {
+        }
+
+        RectangleComponent(const FloatVector2 &pos, const FloatVector2 &sz)
+            : BaseComponent(pos, sz) {
+        }
+
         void draw() override;
     };
 } // namespace ai_framework::components

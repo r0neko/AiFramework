@@ -14,8 +14,8 @@ namespace ai_framework::components {
             : position(pos), size(sz), color(col) {
         }
 
-        BaseComponent()
-            : BaseComponent({0, 0}, {100, 100}, colors::white) {
+        BaseComponent(const FloatVector2 &pos, const FloatVector2 &sz)
+            : position(pos), size(sz), color(colors::white) {
         }
 
         virtual void draw() = 0;

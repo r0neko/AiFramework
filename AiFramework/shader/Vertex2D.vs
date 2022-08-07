@@ -3,8 +3,10 @@ layout (location = 0) in vec2 aPos;
 
 out vec3 mColor;
 
+uniform mat4 uProjMatrix;
+
 void main()
 {
-    gl_Position = vec4(aPos.x, aPos.y, 0.0, 1.0);
+    gl_Position = uProjMatrix * vec4(aPos.xy, 1.0, 1.0);
     mColor = vec3(1, 1, 1);
 }

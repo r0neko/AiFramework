@@ -1,6 +1,7 @@
 #include <graphics/shader_program.hpp>
 
 #include <glad/glad.h>
+#include <glm/glm.hpp>
 
 using namespace ai_framework::graphics;
 
@@ -71,4 +72,13 @@ void ShaderProgram::use() {
             return;
 
     glUseProgram(program_id);
+}
+
+void IShaderProgram::set(std::string_view uniform, const glm::mat4 &mat) {
+    glUseProgram(program_id);
+    auto uf_loc = glGetUniformLocation(program_id, uniform.data());
+    if (uf_loc >= 0)
+        glUniformMatrix4fv(uf_loc, 1, GL_FALSE, &mat[0][0]);
+    else
+        printf("uniform '%s' could not be found!\n", uniform.data());
 }

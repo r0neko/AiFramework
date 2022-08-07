@@ -10,7 +10,7 @@ namespace ai_framework::graphics {
     /// The renderer offers a simplified interface between the Graphical Pipeline and the app.
     /// </summary>
     struct AI_API Renderer {
-        bool init(opaque_t dev_context);
+        bool init(opaque_t dev_context, const IntVector2 &size);
         void set_context(bool use_this = true);
         void destroy();
         void swap_buffers();
@@ -19,15 +19,20 @@ namespace ai_framework::graphics {
             return device_context != nullptr && render_context != nullptr;
         }
 
-        void resize(const IntVector2 &new_size);
+        void resize(const IntVector2 &new_size) {
+            set_viewport(size = new_size);
+            update_ortho();
+        }
 
         void clear();
         void set_viewport(const IntVector2 &viewport);
+        void update_ortho();
 
       private:
+        IntVector2 size;
         opaque_t device_context{nullptr};
         opaque_t render_context{nullptr};
     };
-} // namespace ai_framework
+} // namespace ai_framework::graphics
 
 #endif

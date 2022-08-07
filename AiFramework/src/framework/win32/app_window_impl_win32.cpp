@@ -87,15 +87,15 @@ bool AppWindow::init() {
 
     SetWindowLongPtrW((HWND) window_handle, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
 
-    if (!renderer.init(GetDC((HWND) window_handle)))
+    if (!renderer.init(GetDC((HWND) window_handle), size))
         return false;
 
-    renderer.resize(size);
+    return true;
+}
 
+void AppWindow::show() {
     ShowWindow((HWND) window_handle, true);
     UpdateWindow((HWND) window_handle);
-
-    return true;
 }
 
 void AppWindow::destroy() {
