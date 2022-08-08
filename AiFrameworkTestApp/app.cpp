@@ -10,15 +10,38 @@ struct TestApp : BaseApp {
         return true;
     }
 
+    // WASD to move the white square
+    // red/green/blue/white square for cursor, use left-right-both mouse buttons to see it working
     void draw() override {
-        rect.draw();
-        rect2.draw();
-        rect3.draw();
+        auto cursor = window.input_manager.get_position_float();
+
+        cursor_rect.position = cursor;
+
+        if (window.input_manager.has_button(ButtonState::MOUSE_LEFT) && window.input_manager.has_button(ButtonState::MOUSE_RIGHT))
+            cursor_rect.color = colors::white;
+        else if (window.input_manager.has_button(ButtonState::MOUSE_LEFT))
+            cursor_rect.color = colors::green;
+        else if (window.input_manager.has_button(ButtonState::MOUSE_RIGHT))
+            cursor_rect.color = colors::blue;
+        else
+            cursor_rect.color = colors::red;
+
+        if (window.input_manager.get_key_state(KeyType::KEY_W))
+            test_rect.position.y -= 1.f;
+        else if (window.input_manager.get_key_state(KeyType::KEY_S))
+            test_rect.position.y += 1.f;
+
+        if (window.input_manager.get_key_state(KeyType::KEY_A))
+            test_rect.position.x -= 1.f;
+        else if (window.input_manager.get_key_state(KeyType::KEY_D))
+            test_rect.position.x += 1.f;
+
+        test_rect.draw();
+        cursor_rect.draw();
     }
 
-    RectangleComponent rect{{100.f, 100.f}, {100.f, 200.f}, colors::blue};
-    RectangleComponent rect2{{200.f, 100.f}, {100.f, 200.f}, colors::yellow};
-    RectangleComponent rect3{{300.f, 100.f}, {100.f, 200.f}, colors::red};
+    RectangleComponent cursor_rect{{0.f, 0.f}, {12.f, 18.f}, colors::red};
+    RectangleComponent test_rect{{100.f, 100.f}, {60.f, 60.f}, colors::white};
 };
 
 int main() {

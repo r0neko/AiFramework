@@ -10,6 +10,18 @@ bool BaseApp::init() {
     return true;
 }
 
+void BaseApp::_render() {
+    // pre rendering
+    window.renderer.set_context();
+    window.renderer.clear();
+
+    // real drawing
+    draw();
+
+    // swap buffers
+    window.renderer.swap_buffers();
+}
+
 void BaseApp::run() {
     ai_framework::init();
 
@@ -21,16 +33,7 @@ void BaseApp::run() {
 
     while (!window.is_quit_queued()) {
         window.process_events();
-
-        // pre rendering
-        window.renderer.set_context();
-        window.renderer.clear();
-
-        // real drawing
-        draw();
-
-        // swap buffers
-        window.renderer.swap_buffers();
+        _render();
     }
 }
 

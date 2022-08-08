@@ -5,10 +5,12 @@
 
 #include <generic/vector2.hpp>
 #include <graphics/renderer.hpp>
+#include <input/input_manager.h>
 
 #include <string>
 
 using namespace ai_framework::graphics;
+using namespace ai_framework::input;
 
 namespace ai_framework::framework {
     /// <summary>
@@ -40,6 +42,7 @@ namespace ai_framework::framework {
         }
 
         Renderer renderer;
+        InputManager input_manager;
 
       protected:
         IntVector2 size{800, 600};
@@ -48,7 +51,7 @@ namespace ai_framework::framework {
         std::string title = "AiFramework";
 
       private:
-        bool quit_queued = false;
+        bool quit_queued = true;
         opaque_t window_handle{nullptr};
     };
 } // namespace ai_framework::framework

@@ -25,6 +25,9 @@ namespace ai_framework::framework {
         virtual bool start() {
             return true;
         };
+
+      private:
+        void _render();
     };
 } // namespace ai_framework::framework
 

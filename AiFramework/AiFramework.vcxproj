@@ -56,6 +56,7 @@
     <ClInclude Include="include\graphics\vertex.hpp" />
     <ClInclude Include="include\graphics\renderer.hpp" />
     <ClInclude Include="include\graphics\vertex_buffer.hpp" />
+    <ClInclude Include="include\input\input_manager.h" />
     <ClInclude Include="include\platform\win32\wglext.hpp" />
     <ClInclude Include="include\vendor\stb\stb_image.h" />
   </ItemGroup>

@@ -2,15 +2,16 @@
 #    include <Windows.h>
 #    include <framework/app_window.hpp>
 #    include <framework/error_manager.hpp>
+#    include <input/input_manager.h>
 
 using namespace ai_framework::framework;
+using namespace ai_framework::input;
 
 LRESULT __stdcall app_window_static_wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
     AppWindow *itx_window = reinterpret_cast<AppWindow *>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
 
     if (itx_window) {
         switch (message) {
-        default: return DefWindowProcA(hWnd, message, wParam, lParam);
         case WM_SIZE:
             itx_window->resize({LOWORD(lParam), HIWORD(lParam)});
             break;
@@ -18,6 +19,34 @@ LRESULT __stdcall app_window_static_wndproc(HWND hWnd, UINT message, WPARAM wPar
         case WM_CLOSE:
             PostQuitMessage(0);
             break;
+        case WM_KEYDOWN:
+            itx_window->input_manager.update_key_state((KeyType) wParam, true);
+            break;
+        case WM_KEYUP:
+            itx_window->input_manager.update_key_state((KeyType) wParam, false);
+            break;
+        case WM_MOUSEMOVE:
+            itx_window->input_manager.update_position({LOWORD(lParam), HIWORD(lParam)});
+            break;
+        case WM_LBUTTONDOWN:
+            itx_window->input_manager.update_button_state(ButtonState::MOUSE_LEFT, true);
+            break;
+        case WM_LBUTTONUP:
+            itx_window->input_manager.update_button_state(ButtonState::MOUSE_LEFT, false);
+            break;
+        case WM_MBUTTONDOWN:
+            itx_window->input_manager.update_button_state(ButtonState::MOUSE_MIDDLE, true);
+            break;
+        case WM_MBUTTONUP:
+            itx_window->input_manager.update_button_state(ButtonState::MOUSE_MIDDLE, false);
+            break;
+        case WM_RBUTTONDOWN:
+            itx_window->input_manager.update_button_state(ButtonState::MOUSE_RIGHT, true);
+            break;
+        case WM_RBUTTONUP:
+            itx_window->input_manager.update_button_state(ButtonState::MOUSE_RIGHT, false);
+            break;
+        default: return DefWindowProcA(hWnd, message, wParam, lParam);
         }
         return 0;
     }
