@@ -60,6 +60,9 @@
     <ClCompile Include="src\graphics\gl\texture_impl_gl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\generic\signal_source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ai_framework.hpp">
@@ -129,6 +132,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\input\input_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\generic\signal_source.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

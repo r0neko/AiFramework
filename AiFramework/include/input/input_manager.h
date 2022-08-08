@@ -2,10 +2,14 @@
 #define INPUT_MANAGER_HPP
 
 #include <framework_build.hpp>
+#include <generic/signal_source.hpp>
 #include <generic/vector2.hpp>
+
 #include <unordered_map>
 
 #include <stdio.h>
+
+using namespace ai_framework;
 
 namespace ai_framework::input {
     enum ButtonState {
@@ -95,7 +99,13 @@ namespace ai_framework::input {
         KEY_F24
     };
 
-    struct AI_API InputManager {
+    struct MouseStateEventParam {
+        ButtonState old_buttons;
+        ButtonState buttons;
+        IntVector2 position;
+    };
+
+    struct AI_API InputManager : SignalSource {
         void update_position(const IntVector2 &new_position) {
             position = new_position;
 
@@ -103,12 +113,17 @@ namespace ai_framework::input {
         };
 
         void update_button_state(ButtonState new_state, bool value) {
+            auto old_state = button_state;
+
             if (value)
                 button_state |= (int) new_state;
             else
                 button_state &= ~new_state;
 
             printf("new button state: %i\n", button_state);
+
+            MouseStateEventParam p{(ButtonState) old_state, (ButtonState) button_state, position};
+            emit("mouse_state_update", &p);
         }
 
         bool has_button(ButtonState button) {

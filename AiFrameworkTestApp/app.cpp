@@ -7,7 +7,21 @@ using namespace ai_framework::components;
 struct TestApp : BaseApp {
     bool start() override {
         printf("App start!\n");
+
+        window.input_manager.listen("mouse_state_update", [&](void *param) {
+            input_click_up_callback(param);
+        });
+
         return true;
+    }
+
+    void input_click_up_callback(void *param) {
+        auto ev = (MouseStateEventParam *) param;
+
+        if ((ev->old_buttons & ButtonState::MOUSE_LEFT) > 0) {
+            printf("click up at %ix%i\n", ev->position.x, ev->position.y);
+            colection.push_back({{(float) ev->position.x, (float) ev->position.y}, {10.f, 10.f}, colors::green});
+        }
     }
 
     // WASD to move the white square
@@ -37,11 +51,16 @@ struct TestApp : BaseApp {
             test_rect.position.x += 1.f;
 
         test_rect.draw();
+
+        for (auto &a : colection)
+            a.draw();
+
         cursor_rect.draw();
     }
 
     RectangleComponent cursor_rect{{0.f, 0.f}, {12.f, 18.f}, colors::red};
     RectangleComponent test_rect{{100.f, 100.f}, {60.f, 60.f}, colors::white};
+    std::vector<RectangleComponent> colection;
 };
 
 int main() {
