@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework_main.cpp" />
+    <ClCompile Include="src\components\button.cpp" />
     <ClCompile Include="src\components\rectangle_component.cpp" />
     <ClCompile Include="src\framework\win32\app_window_impl_win32.cpp" />
     <ClCompile Include="src\framework\base_app.cpp" />
@@ -39,6 +40,7 @@
   <ItemGroup>
     <ClInclude Include="include\ai_framework.hpp" />
     <ClInclude Include="include\components\base_component.hpp" />
+    <ClInclude Include="include\components\button.hpp" />
     <ClInclude Include="include\components\rectangle_component.hpp" />
     <ClInclude Include="include\framework\app_window.hpp" />
     <ClInclude Include="include\framework\base_app.hpp" />
@@ -58,7 +60,7 @@
     <ClInclude Include="include\graphics\vertex.hpp" />
     <ClInclude Include="include\graphics\renderer.hpp" />
     <ClInclude Include="include\graphics\vertex_buffer.hpp" />
-    <ClInclude Include="include\input\input_manager.h" />
+    <ClInclude Include="include\input\input_manager.hpp" />
     <ClInclude Include="include\platform\win32\wglext.hpp" />
     <ClInclude Include="include\vendor\stb\stb_image.h" />
   </ItemGroup>

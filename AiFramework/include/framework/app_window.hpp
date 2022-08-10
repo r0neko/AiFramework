@@ -5,7 +5,7 @@
 
 #include <generic/vector2.hpp>
 #include <graphics/renderer.hpp>
-#include <input/input_manager.h>
+#include <input/input_manager.hpp>
 
 #include <string>
 

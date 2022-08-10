@@ -63,6 +63,9 @@
     <ClCompile Include="src\generic\signal_source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\components\button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ai_framework.hpp">
@@ -131,10 +134,13 @@
     <ClInclude Include="include\graphics\texture.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\input\input_manager.h">
+    <ClInclude Include="include\input\input_manager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\generic\signal_source.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\components\button.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

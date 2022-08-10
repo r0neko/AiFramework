@@ -16,7 +16,7 @@ void BaseApp::_render() {
     window.renderer.clear();
 
     // real drawing
-    draw();
+    draw(this);
 
     // swap buffers
     window.renderer.swap_buffers();

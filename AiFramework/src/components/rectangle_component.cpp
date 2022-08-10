@@ -13,7 +13,7 @@ QuadVertexBuffer<ColorVertex2D> quad_buffer;
 
 bool r_comp_first_frame = true;
 
-void RectangleComponent::draw() {
+void RectangleComponent::draw(BaseApp *app) {
     if (!r_comp_first_frame && !quad_buffer.can_render())
         return;
 

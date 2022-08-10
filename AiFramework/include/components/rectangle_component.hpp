@@ -17,7 +17,7 @@ namespace ai_framework::components {
             : BaseComponent(pos, sz) {
         }
 
-        void draw() override;
+        void draw(BaseApp *app) override;
     };
 } // namespace ai_framework::components
 

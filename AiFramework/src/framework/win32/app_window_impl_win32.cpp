@@ -2,7 +2,7 @@
 #    include <Windows.h>
 #    include <framework/app_window.hpp>
 #    include <framework/error_manager.hpp>
-#    include <input/input_manager.h>
+#    include <input/input_manager.hpp>
 
 using namespace ai_framework::framework;
 using namespace ai_framework::input;

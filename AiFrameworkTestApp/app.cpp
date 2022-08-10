@@ -9,58 +9,85 @@ struct TestApp : BaseApp {
         printf("App start!\n");
 
         window.input_manager.listen("mouse_state_update", [&](void *param) {
-            input_click_up_callback(param);
+            auto ev = (MouseStateEventParam *) param;
+
+            if ((ev->old_buttons & ButtonState::MOUSE_LEFT) > 0)
+                colection.push_back({{(float) ev->position.x, (float) ev->position.y}, {10.f, 10.f}, colors::green});
+
+            if ((ev->buttons & ButtonState::MOUSE_LEFT) > 0 && (ev->buttons & ButtonState::MOUSE_RIGHT) > 0)
+                cursor_rect.color = colors::white;
+            else if ((ev->buttons & ButtonState::MOUSE_LEFT) > 0)
+                cursor_rect.color = colors::green;
+            else if ((ev->buttons & ButtonState::MOUSE_RIGHT) > 0)
+                cursor_rect.color = colors::blue;
+            else
+                cursor_rect.color = colors::red;
+        });
+
+        window.input_manager.listen("mouse_position_update", [&](void *param) {
+            auto ev = (MousePositionEventParam *) param;
+            cursor_rect.position = {(float) ev->position.x, (float) ev->position.y};
+        });
+
+        window.input_manager.listen("key_update", [&](void *param) {
+            auto ev = (KeyUpdateEventParam *) param;
+
+            if (ev->pressed) {
+                switch (ev->key) {
+                default: break;
+                case KeyType::KEY_W:
+                    rect_units.y = -1.f;
+                    break;
+                case KeyType::KEY_S:
+                    rect_units.y = 1.f;
+                    break;
+                }
+            } else
+                rect_units.y = 0.f;
+
+            if (ev->pressed) {
+                switch (ev->key) {
+                default: break;
+                case KeyType::KEY_A:
+                    rect_units.x = -1.f;
+                    break;
+                case KeyType::KEY_D:
+                    rect_units.x = 1.f;
+                    break;
+                }
+            } else
+                rect_units.x = 0.f;
+        });
+
+        test_btn.listen("click", [&](void *) {
+            printf("doing some cleaning! we have to kill %zi components\n", colection.size());
+            colection.clear();
         });
 
         return true;
     }
 
-    void input_click_up_callback(void *param) {
-        auto ev = (MouseStateEventParam *) param;
-
-        if ((ev->old_buttons & ButtonState::MOUSE_LEFT) > 0) {
-            printf("click up at %ix%i\n", ev->position.x, ev->position.y);
-            colection.push_back({{(float) ev->position.x, (float) ev->position.y}, {10.f, 10.f}, colors::green});
-        }
-    }
-
     // WASD to move the white square
     // red/green/blue/white square for cursor, use left-right-both mouse buttons to see it working
-    void draw() override {
-        auto cursor = window.input_manager.get_position_float();
+    void draw(BaseApp *app) override {
+        test_rect.position += rect_units;
 
-        cursor_rect.position = cursor;
-
-        if (window.input_manager.has_button(ButtonState::MOUSE_LEFT) && window.input_manager.has_button(ButtonState::MOUSE_RIGHT))
-            cursor_rect.color = colors::white;
-        else if (window.input_manager.has_button(ButtonState::MOUSE_LEFT))
-            cursor_rect.color = colors::green;
-        else if (window.input_manager.has_button(ButtonState::MOUSE_RIGHT))
-            cursor_rect.color = colors::blue;
-        else
-            cursor_rect.color = colors::red;
-
-        if (window.input_manager.get_key_state(KeyType::KEY_W))
-            test_rect.position.y -= 1.f;
-        else if (window.input_manager.get_key_state(KeyType::KEY_S))
-            test_rect.position.y += 1.f;
-
-        if (window.input_manager.get_key_state(KeyType::KEY_A))
-            test_rect.position.x -= 1.f;
-        else if (window.input_manager.get_key_state(KeyType::KEY_D))
-            test_rect.position.x += 1.f;
-
-        test_rect.draw();
+        test_rect.draw(app);
+        test_btn.draw(app);
 
         for (auto &a : colection)
-            a.draw();
+            a.draw(app);
 
-        cursor_rect.draw();
+        cursor_rect.draw(app);
     }
 
     RectangleComponent cursor_rect{{0.f, 0.f}, {12.f, 18.f}, colors::red};
     RectangleComponent test_rect{{100.f, 100.f}, {60.f, 60.f}, colors::white};
+    Button test_btn{{10.f, 10.f}};
+
     std::vector<RectangleComponent> colection;
+
+    FloatVector2 rect_units;
 };
 
 int main() {

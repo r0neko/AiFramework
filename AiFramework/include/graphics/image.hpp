@@ -12,6 +12,10 @@ using namespace ai_framework;
 
 namespace ai_framework::graphics {
     struct AI_API Image {
+        Image()
+            : size({0, 0}) {
+        }
+
         Image(std::string_view filename);
         Image(const Image &rhs)
             : size(rhs.size), pixels(rhs.pixels) {

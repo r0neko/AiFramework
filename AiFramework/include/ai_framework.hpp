@@ -18,6 +18,7 @@
 #include <graphics/vertex.hpp>
 #include <graphics/vertex_buffer.hpp>
 
+#include <components/button.hpp>
 #include <components/rectangle_component.hpp>
 
 #endif

@@ -105,11 +105,23 @@ namespace ai_framework::input {
         IntVector2 position;
     };
 
+    struct MousePositionEventParam {
+        IntVector2 position;
+    };
+
+    struct KeyUpdateEventParam {
+        KeyType key;
+        bool pressed;
+    };
+
     struct AI_API InputManager : SignalSource {
         void update_position(const IntVector2 &new_position) {
             position = new_position;
 
-            printf("new position: %ix%i\n", new_position.x, new_position.y);
+            MousePositionEventParam p{
+                position};
+            emit("mouse_position_update", &p);
+            // printf("new position: %ix%i\n", new_position.x, new_position.y);
         };
 
         void update_button_state(ButtonState new_state, bool value) {
@@ -139,8 +151,12 @@ namespace ai_framework::input {
         }
 
         void update_key_state(KeyType t, bool x) {
-            printf("update key state: %i -> %s\n", t, x ? "true" : "false");
             key_state[t] = x;
+
+            printf("update key state: %i -> %s\n", t, x ? "true" : "false");
+
+            KeyUpdateEventParam p{t, x};
+            emit("key_update", &p);
         }
 
         bool get_key_state(KeyType t) {

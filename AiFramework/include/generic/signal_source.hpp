@@ -25,7 +25,6 @@ namespace ai_framework {
         /// </summary>
         /// <param name="type">A string with the name of the event.</param>
         /// <param name="listener">A delegate listener function which will be called.</param>
-        /// <param name="listener">A delegate listener function which will be called.</param>
         void listen(std::string_view type, SignalDelegateFunc listener);
 
         /// <summary>

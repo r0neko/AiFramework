@@ -7,6 +7,9 @@
 
 namespace ai_framework::graphics {
     struct AI_API Texture {
+        Texture() {
+        }
+
         Texture(const Image &image)
             : texture(image) {
         }

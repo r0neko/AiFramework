@@ -17,7 +17,7 @@ namespace ai_framework::framework {
         void destroy();
         void run();
 
-        virtual void draw() = 0;
+        virtual void draw(BaseApp *app) = 0;
 
         AppWindow window;
 
