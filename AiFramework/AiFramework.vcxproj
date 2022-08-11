@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\framework\linux\app_window_impl_x11.cpp" />
     <ClCompile Include="src\framework_main.cpp" />
     <ClCompile Include="src\components\button.cpp" />
     <ClCompile Include="src\components\rectangle_component.cpp" />
     <ClCompile Include="src\framework\win32\app_window_impl_win32.cpp" />
     <ClCompile Include="src\framework\base_app.cpp" />
     <ClCompile Include="src\generic\signal_source.cpp" />
+    <ClCompile Include="src\graphics\gl\linux\renderer_impl_x11.cpp" />
     <ClCompile Include="src\graphics\gl\quad_vertex_buffer_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\renderer_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\shader_program_impl_gl.cpp" />

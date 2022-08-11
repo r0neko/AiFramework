@@ -28,12 +28,17 @@
 
 using opaque_t = void *;
 
-#ifdef _LINUX && _X11
+#ifdef _LINUX
+#    ifdef _X11
 using gfx_opaque_t = long unsigned int;
-#define GFX_OPAQUE_NULL 0
+#        define GFX_OPAQUE_NULL 0
+#    else
+using gfx_opaque_t = opaque_t;
+#        define GFX_OPAQUE_NULL nullptr
+#    endif
 #else
 using gfx_opaque_t = opaque_t;
-#define GFX_OPAQUE_NULL nullptr
+#    define GFX_OPAQUE_NULL nullptr
 #endif
 
 #endif

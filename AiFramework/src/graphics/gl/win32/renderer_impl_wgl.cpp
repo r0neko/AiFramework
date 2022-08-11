@@ -15,7 +15,7 @@ using namespace ai_framework::framework;
 
 // TO DO: look at https://stackoverflow.com/questions/46655372/create-modern-opengl-context-using-wgl for an reference on how to properly init WGL
 
-bool Renderer::init(opaque_t dev_context, const IntVector2 &size) {
+bool Renderer::init(opaque_t dev_context, opaque_t, opaque_t, const IntVector2 &size) {
     PIXELFORMATDESCRIPTOR pfd{0};
 
     device_context = dev_context;
