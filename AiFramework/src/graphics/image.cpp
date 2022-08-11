@@ -3,6 +3,8 @@
 #include <graphics/image.hpp>
 #include <vendor/stb/stb_image.h>
 
+#include <stdexcept>
+
 using namespace ai_framework::graphics;
 
 // use stb image internally for now to make image loading easier
@@ -13,7 +15,7 @@ Image::Image(std::string_view filename) {
     auto image_data = stbi_load(filename.data(), &size.x, &size.y, &chan_nbr, 0);
 
     if (!image_data)
-        throw new std::exception("failed to load this image!");
+        throw std::runtime_error("failed to load this image!");
 
     for (int i = 0; i < (size.x * size.y); i++) {
         if (chan_nbr == 3) {

@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="framework_main.cpp" />
+    <ClCompile Include="src\framework_main.cpp" />
     <ClCompile Include="src\components\button.cpp" />
     <ClCompile Include="src\components\rectangle_component.cpp" />
     <ClCompile Include="src\framework\win32\app_window_impl_win32.cpp" />

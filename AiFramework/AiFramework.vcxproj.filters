@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="framework_main.cpp">
+    <ClCompile Include="src\framework_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\framework\win32\app_window_impl_win32.cpp">

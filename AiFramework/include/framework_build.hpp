@@ -5,6 +5,9 @@
 #    pragma warning(disable : 4251)
 #    define AI_API_IMPORT __declspec(dllimport)
 #    define AI_API_EXPORT __declspec(dllexport)
+#else
+#    define AI_API_IMPORT
+#    define AI_API_EXPORT
 #endif
 
 #ifndef AI_API
@@ -24,5 +27,13 @@
 #endif
 
 using opaque_t = void *;
+
+#ifdef _LINUX && _X11
+using gfx_opaque_t = long unsigned int;
+#define GFX_OPAQUE_NULL 0
+#else
+using gfx_opaque_t = opaque_t;
+#define GFX_OPAQUE_NULL nullptr
+#endif
 
 #endif

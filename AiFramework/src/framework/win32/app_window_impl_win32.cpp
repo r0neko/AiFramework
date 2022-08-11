@@ -116,7 +116,7 @@ bool AppWindow::init() {
 
     SetWindowLongPtrW((HWND) window_handle, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
 
-    if (!renderer.init(GetDC((HWND) window_handle), size))
+    if (!renderer.init(GetDC((HWND) window_handle), 0, 0, size))
         return false;
 
     return true;

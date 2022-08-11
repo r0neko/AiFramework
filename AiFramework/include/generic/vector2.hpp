@@ -3,6 +3,8 @@
 
 #include <framework_build.hpp>
 
+#include <stdlib.h>
+
 namespace ai_framework {
     /// <summary>
     /// Stores a bi-dimensional point of the specified type.

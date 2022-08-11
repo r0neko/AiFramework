@@ -12,14 +12,14 @@ bool BaseApp::init() {
 
 void BaseApp::_render() {
     // pre rendering
-    window.renderer.set_context();
-    window.renderer.clear();
+    //window.renderer.set_context();
+    //window.renderer.clear();
 
     // real drawing
-    draw(this);
+    //draw(this);
 
     // swap buffers
-    window.renderer.swap_buffers();
+    //window.renderer.swap_buffers();
 }
 
 void BaseApp::run() {

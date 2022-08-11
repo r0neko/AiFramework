@@ -53,6 +53,7 @@ namespace ai_framework::framework {
       private:
         bool quit_queued = true;
         opaque_t window_handle{nullptr};
+        opaque_t display_handle{nullptr};
     };
 } // namespace ai_framework::framework
 

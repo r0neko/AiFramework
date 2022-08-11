@@ -4,6 +4,8 @@
 #include <iostream>
 #include <sstream>
 
+#include <stdexcept>
+
 using namespace ai_framework::graphics;
 
 Shader Shader::from_file(std::string_view name, std::string_view path, ShaderType type) {
@@ -16,7 +18,7 @@ Shader Shader::from_file(std::string_view name, std::string_view path, ShaderTyp
     inFile.open(std::string{path});
 
     if (!inFile)
-        throw std::exception("Could not open the shader file!");
+        throw std::runtime_error("Could not open the shader file!");
 
     strStream << inFile.rdbuf();
 

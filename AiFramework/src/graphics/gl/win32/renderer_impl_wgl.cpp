@@ -1,3 +1,4 @@
+#ifdef _WIN32
 #include <framework/error_manager.hpp>
 #include <graphics/renderer.hpp>
 #include <platform/win32/wglext.hpp>
@@ -103,3 +104,4 @@ void Renderer::swap_buffers() {
     if (is_init())
         SwapBuffers((HDC) device_context);
 }
+#endif
