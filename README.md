@@ -3,7 +3,11 @@ C++ OpenGL 2D Framework. A third attempt at writing an game framework/engine.
 
 # Requirements - Windows(vcpkg)
 You are an Windows user? We gotchu! Install these requirements and then the code will magically work!
-```vcpkg install glad[wgl]:x86-windows-static-md opengl:x86-windows-static-md glm:x86-windows-static-md glad[wgl]:x64-windows-static-md opengl:x64-windows-static-md glm:x64-windows-static-md```
+
+```
+vcpkg install glad[wgl]:x86-windows-static-md opengl:x86-windows-static-md glm:x86-windows-static-md glad[wgl]:x64-windows-static-md opengl:x64-windows-static-md glm:x64-windows-static-md
+```
+
 Don't forget to use Visual Studio for this to work!
 
 # Requirements - Linux
