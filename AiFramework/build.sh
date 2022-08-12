@@ -37,7 +37,6 @@ package_check mesa-common-dev
 package_check libglew-dev
 package_check libglm-dev
 package_check libao-dev
-package_check libmpg123-dev
 
 printf "[*] Step 2: GLAD setup\n"
 printf "[i] Creating working directories...\n"
