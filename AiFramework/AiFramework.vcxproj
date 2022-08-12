@@ -19,32 +19,31 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\framework\linux\app_window_impl_x11.cpp" />
-    <ClCompile Include="src\framework_main.cpp" />
     <ClCompile Include="src\components\button.cpp" />
     <ClCompile Include="src\components\rectangle_component.cpp" />
-    <ClCompile Include="src\framework\win32\app_window_impl_win32.cpp" />
     <ClCompile Include="src\framework\base_app.cpp" />
+    <ClCompile Include="src\framework_main.cpp" />
+    <ClCompile Include="src\platform\platform.cpp" />
     <ClCompile Include="src\generic\signal_source.cpp" />
-    <ClCompile Include="src\graphics\gl\linux\renderer_impl_x11.cpp" />
     <ClCompile Include="src\graphics\gl\quad_vertex_buffer_impl_gl.cpp" />
-    <ClCompile Include="src\graphics\gl\renderer_impl_gl.cpp" />
+    <ClCompile Include="src\graphics\gl\gl_renderer.cpp" />
     <ClCompile Include="src\graphics\gl\shader_program_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\texture_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\vertex_impl_gl.cpp" />
-    <ClCompile Include="src\graphics\gl\win32\renderer_impl_wgl.cpp" />
     <ClCompile Include="src\graphics\gl\vertex_buffer_impl_gl.cpp" />
     <ClCompile Include="src\graphics\gl\shader_impl_gl.cpp" />
     <ClCompile Include="src\graphics\image.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\graphics\vertex.cpp" />
+    <ClCompile Include="src\platform\windows\wgl\wgl_app_window.cpp" />
+    <ClCompile Include="src\platform\windows\wgl\wgl_renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ai_framework.hpp" />
     <ClInclude Include="include\components\base_component.hpp" />
     <ClInclude Include="include\components\button.hpp" />
     <ClInclude Include="include\components\rectangle_component.hpp" />
-    <ClInclude Include="include\framework\app_window.hpp" />
+    <ClInclude Include="include\framework\i_app_window.hpp" />
     <ClInclude Include="include\framework\base_app.hpp" />
     <ClInclude Include="include\framework\error_manager.hpp" />
     <ClInclude Include="include\framework\shaders_internal.hpp" />
@@ -54,16 +53,20 @@
     <ClInclude Include="include\generic\singleton.hpp" />
     <ClInclude Include="include\generic\vector2.hpp" />
     <ClInclude Include="include\graphics\color.hpp" />
+    <ClInclude Include="include\graphics\gl_renderer.hpp" />
     <ClInclude Include="include\graphics\image.hpp" />
     <ClInclude Include="include\graphics\quad_vertex_buffer.hpp" />
     <ClInclude Include="include\graphics\shader.hpp" />
     <ClInclude Include="include\graphics\shader_program.hpp" />
     <ClInclude Include="include\graphics\texture.hpp" />
     <ClInclude Include="include\graphics\vertex.hpp" />
-    <ClInclude Include="include\graphics\renderer.hpp" />
+    <ClInclude Include="include\graphics\i_renderer.hpp" />
     <ClInclude Include="include\graphics\vertex_buffer.hpp" />
     <ClInclude Include="include\input\input_manager.hpp" />
-    <ClInclude Include="include\platform\win32\wglext.hpp" />
+    <ClInclude Include="include\platform\platform.hpp" />
+    <ClInclude Include="include\platform\windows\wgl\wgl_app_window.hpp" />
+    <ClInclude Include="include\platform\windows\wgl\wglext.hpp" />
+    <ClInclude Include="include\platform\windows\wgl\wgl_renderer.hpp" />
     <ClInclude Include="include\vendor\stb\stb_image.h" />
   </ItemGroup>
   <ItemGroup>

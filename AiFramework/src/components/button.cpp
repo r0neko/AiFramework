@@ -4,7 +4,7 @@ using namespace ai_framework::components;
 
 void Button::draw(BaseApp *app) {
     if (is_first_frame) {
-        app->window.input_manager.listen("mouse_state_update", [&](void *param) {
+        app->window->input_manager.listen("mouse_state_update", [&](void *param) {
             handle_mouse_state_event(param);
         });
 

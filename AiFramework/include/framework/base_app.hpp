@@ -1,11 +1,12 @@
 #ifndef BASE_APP_HPP
 #define BASE_APP_HPP
 
-#include <framework/app_window.hpp>
+#include <framework/i_app_window.hpp>
 #include <framework_build.hpp>
 
 #include <generic/vector2.hpp>
 
+#include <memory>
 #include <string>
 
 namespace ai_framework::framework {
@@ -19,7 +20,7 @@ namespace ai_framework::framework {
 
         virtual void draw(BaseApp *app) = 0;
 
-        AppWindow window;
+        std::shared_ptr<IAppWindow> window{nullptr};
 
       protected:
         virtual bool start() {

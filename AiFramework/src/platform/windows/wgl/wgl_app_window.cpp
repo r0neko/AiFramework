@@ -1,14 +1,18 @@
 #ifdef _WIN32
 #    include <Windows.h>
-#    include <framework/app_window.hpp>
 #    include <framework/error_manager.hpp>
 #    include <input/input_manager.hpp>
+#    include <platform/platform.hpp>
+#    include <platform/windows/wgl/wgl_app_window.hpp>
 
+using namespace ai_framework;
 using namespace ai_framework::framework;
 using namespace ai_framework::input;
 
+using namespace platform::windows::graphics;
+
 LRESULT __stdcall app_window_static_wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
-    AppWindow *itx_window = reinterpret_cast<AppWindow *>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+    WGLAppWindow *itx_window = reinterpret_cast<WGLAppWindow *>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
 
     if (itx_window) {
         switch (message) {
@@ -54,7 +58,7 @@ LRESULT __stdcall app_window_static_wndproc(HWND hWnd, UINT message, WPARAM wPar
     return DefWindowProcA(hWnd, message, wParam, lParam);
 }
 
-bool AppWindow::init() {
+bool WGLAppWindow::init() {
     if (is_init()) {
         ErrorManager::instance().set_error(ErrorType::INIT_FAILURE, "The window is alread initialised!");
         return false;
@@ -116,20 +120,23 @@ bool AppWindow::init() {
 
     SetWindowLongPtrW((HWND) window_handle, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(this));
 
-    if (!renderer.init(GetDC((HWND) window_handle), 0, 0, size))
+    renderer = platform::make_renderer();
+
+    if (!renderer->init(GetDC((HWND) window_handle), size))
         return false;
 
     return true;
 }
 
-void AppWindow::show() {
+void WGLAppWindow::show() {
     ShowWindow((HWND) window_handle, true);
     UpdateWindow((HWND) window_handle);
 }
 
-void AppWindow::destroy() {
+void WGLAppWindow::destroy() {
     if (is_init()) {
-        renderer.destroy();
+        renderer->destroy();
+        renderer = nullptr;
 
         CloseWindow((HWND) window_handle);
         UnregisterClassA(win_class.data(), GetModuleHandle(NULL));
@@ -138,7 +145,7 @@ void AppWindow::destroy() {
     }
 }
 
-void AppWindow::process_events() {
+void WGLAppWindow::process_events() {
     MSG msg;
 
     if (!is_init())
@@ -153,11 +160,15 @@ void AppWindow::process_events() {
     }
 }
 
-void AppWindow::set_title(std::string_view new_title) {
+void WGLAppWindow::set_title(std::string_view new_title) {
     if (is_init())
         SetWindowTextA((HWND) window_handle, new_title.data());
 
     title = new_title;
+}
+
+bool WGLAppWindow::is_init() {
+    return window_handle != nullptr;
 }
 
 #endif

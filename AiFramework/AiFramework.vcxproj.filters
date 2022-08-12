@@ -18,16 +18,7 @@
     <ClCompile Include="src\framework_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\framework\win32\app_window_impl_win32.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\framework\base_app.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\gl\win32\renderer_impl_wgl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\gl\renderer_impl_gl.cpp">
+    <ClCompile Include="src\graphics\gl\gl_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\gl\vertex_buffer_impl_gl.cpp">
@@ -48,9 +39,6 @@
     <ClCompile Include="src\graphics\gl\vertex_impl_gl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\components\rectangle_component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\graphics\vertex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,13 +51,22 @@
     <ClCompile Include="src\generic\signal_source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\platform\platform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\windows\wgl\wgl_app_window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\windows\wgl\wgl_renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\components\button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\framework\linux\app_window_impl_x11.cpp">
+    <ClCompile Include="src\components\rectangle_component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\gl\linux\renderer_impl_x11.cpp">
+    <ClCompile Include="src\framework\base_app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,7 +83,7 @@
     <ClInclude Include="include\framework\base_app.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\renderer.hpp">
+    <ClInclude Include="include\graphics\i_renderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\framework\error_manager.hpp">
@@ -95,10 +92,10 @@
     <ClInclude Include="include\generic\vector2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\framework\app_window.hpp">
+    <ClInclude Include="include\framework\i_app_window.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\platform\win32\wglext.hpp">
+    <ClInclude Include="include\platform\windows\wgl\wglext.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\vertex.hpp">
@@ -147,6 +144,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\components\button.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\platform\windows\wgl\wgl_app_window.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\platform\platform.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\platform\windows\wgl\wgl_renderer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\gl_renderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

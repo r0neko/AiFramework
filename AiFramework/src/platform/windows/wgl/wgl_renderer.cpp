@@ -1,21 +1,22 @@
 #ifdef _WIN32
-#include <framework/error_manager.hpp>
-#include <graphics/renderer.hpp>
-#include <platform/win32/wglext.hpp>
+#    include <framework/error_manager.hpp>
+#    include <platform/windows/wgl/wglext.hpp>
+#    include <platform/windows/wgl/wgl_renderer.hpp>
 
-#include <Windows.h>
+#    include <Windows.h>
 
-#include <glad/glad.h>
-#include <glad/glad_wgl.h>
+#    include <glad/glad.h>
+#    include <glad/glad_wgl.h>
 
-#include <stdio.h>
+#    include <stdio.h>
 
 using namespace ai_framework::graphics;
+using namespace ai_framework::platform::windows::graphics;
 using namespace ai_framework::framework;
 
 // TO DO: look at https://stackoverflow.com/questions/46655372/create-modern-opengl-context-using-wgl for an reference on how to properly init WGL
 
-bool Renderer::init(opaque_t dev_context, opaque_t, opaque_t, const IntVector2 &size) {
+bool WGLRenderer::init(opaque_t dev_context, const IntVector2 &size) {
     PIXELFORMATDESCRIPTOR pfd{0};
 
     device_context = dev_context;
@@ -85,14 +86,14 @@ bool Renderer::init(opaque_t dev_context, opaque_t, opaque_t, const IntVector2 &
     return is_init();
 }
 
-void Renderer::set_context(bool use_this) {
+void WGLRenderer::set_context(bool use_this) {
     if (!use_this)
         wglMakeCurrent(0, 0);
     else if (is_init())
         wglMakeCurrent((HDC) device_context, (HGLRC) render_context);
 }
 
-void Renderer::destroy() {
+void WGLRenderer::destroy() {
     set_context(0);
     wglDeleteContext((HGLRC) render_context);
 
@@ -100,8 +101,12 @@ void Renderer::destroy() {
     device_context = nullptr;
 }
 
-void Renderer::swap_buffers() {
+void WGLRenderer::swap_buffers() {
     if (is_init())
         SwapBuffers((HDC) device_context);
+}
+
+bool WGLRenderer::is_init() {
+    return device_context != nullptr && render_context != nullptr;
 }
 #endif

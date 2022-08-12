@@ -2,6 +2,7 @@
 
 #include <ai_framework.hpp>
 #include <framework/shaders_internal.hpp>
+#include <platform/platform.hpp>
 
 using namespace ai_framework::graphics;
 using namespace ai_framework::shaders;
@@ -9,6 +10,8 @@ using namespace ai_framework::shaders;
 void ai_framework::init() {
     if (vertex_2d_shader.compiled() && color_vertex_2d_shader.compiled())
         return;
+
+    printf("Running on %s using %s.\n", platform::get_platform_name().data(), platform::get_renderer_name().data());
 
     // don't load this 100 times! load it only once
     auto color_v2d_fragment = Shader::from_file("ColorVertex2D", "../AiFramework/shader/ColorVertex2D.fs", ShaderType::FRAGMENT);

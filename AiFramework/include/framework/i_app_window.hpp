@@ -4,7 +4,7 @@
 #include <framework_build.hpp>
 
 #include <generic/vector2.hpp>
-#include <graphics/renderer.hpp>
+#include <graphics/i_renderer.hpp>
 #include <input/input_manager.hpp>
 
 #include <string>
@@ -13,47 +13,39 @@ using namespace ai_framework::graphics;
 using namespace ai_framework::input;
 
 namespace ai_framework::framework {
-    /// <summary>
-    /// An application window with a renderer.
-    /// </summary>
-    struct AI_API AppWindow {
-        bool init();
-        void destroy();
-        void process_events();
-        void show();
+    struct AI_API IAppWindow {
+        virtual bool init() = 0;
+        virtual void destroy() = 0;
+        virtual void process_events() = 0;
+        virtual void show() = 0;
 
-        void set_title(std::string_view new_title);
+        virtual void set_title(std::string_view new_title) = 0;
 
         bool is_quit_queued() const {
             return quit_queued;
         }
 
-        bool is_init() const {
-            return window_handle != nullptr;
-        }
+        virtual bool is_init() = 0;
 
         virtual void resize(const IntVector2 &new_resolution) {
             size = new_resolution;
-            renderer.resize(size);
+
+            if (renderer)
+                renderer->resize(size);
         }
 
         IntVector2 get_size() const {
             return size;
         }
 
-        Renderer renderer;
+        std::shared_ptr<IRenderer> renderer{nullptr};
         InputManager input_manager;
 
       protected:
         IntVector2 size{800, 600};
-
-        std::string win_class = "AI_FRAMEWORK_WIN_CLASS";
         std::string title = "AiFramework";
 
-      private:
         bool quit_queued = true;
-        opaque_t window_handle{nullptr};
-        opaque_t display_handle{nullptr};
     };
 } // namespace ai_framework::framework
 

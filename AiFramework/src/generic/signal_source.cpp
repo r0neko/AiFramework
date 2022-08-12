@@ -17,14 +17,14 @@ void SignalSource::dismiss(std::string_view type, SignalDelegate listener) {
 }
 
 void SignalSource::emit(std::string_view type, void *data) {
-    printf("Dispatching signal '%s'...\n", type.data());
+    //printf("Dispatching signal '%s'...\n", type.data());
 
     if (!signal_delegates.contains(type.data()))
         return;
 
     auto listeners = signal_delegates[type.data()];
 
-    printf("Dispatching to %zi listeners!\n", listeners.size());
+    //printf("Dispatching to %zi listeners!\n", listeners.size());
 
     for (auto e : listeners)
         (*e)(data);
