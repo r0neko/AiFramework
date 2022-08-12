@@ -1,5 +1,6 @@
 #ifdef _WIN32
 #    include <Windows.h>
+
 #    include <framework/error_manager.hpp>
 #    include <input/input_manager.hpp>
 #    include <platform/platform.hpp>

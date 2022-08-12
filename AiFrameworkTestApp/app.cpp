@@ -1,5 +1,7 @@
 #include "app.hpp"
 
+using namespace ai_framework;
+
 int main() {
     TestApp app;
 

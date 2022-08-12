@@ -20,6 +20,7 @@ namespace ai_framework::input {
     };
 
     enum KeyType {
+        UNKNOWN = -1,
         KEY_0 = 0x30,
         KEY_1,
         KEY_2,
@@ -121,7 +122,6 @@ namespace ai_framework::input {
             MousePositionEventParam p{
                 position};
             emit("mouse_position_update", &p);
-            // printf("new position: %ix%i\n", new_position.x, new_position.y);
         };
 
         void update_button_state(ButtonState new_state, bool value) {
@@ -131,8 +131,6 @@ namespace ai_framework::input {
                 button_state |= (int) new_state;
             else
                 button_state &= ~new_state;
-
-            printf("new button state: %i\n", button_state);
 
             MouseStateEventParam p{(ButtonState) old_state, (ButtonState) button_state, position};
             emit("mouse_state_update", &p);
@@ -152,8 +150,6 @@ namespace ai_framework::input {
 
         void update_key_state(KeyType t, bool x) {
             key_state[t] = x;
-
-            printf("update key state: %i -> %s\n", t, x ? "true" : "false");
 
             KeyUpdateEventParam p{t, x};
             emit("key_update", &p);

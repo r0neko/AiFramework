@@ -7,8 +7,12 @@ CXX_FLAGS = -std=c++2a $(COMPILE_FLAGS)
 all: AiFrameworkTestApp
 
 AiFrameworkTestApp:
+	@mkdir -p build
 	$(CXX) $(CXX_FLAGS) -o build/$@ app.cpp -laifw
-	cp ../AiFramework/build/libaifw.so build/
+	@cp ../AiFramework/build/libaifw.so build/
+
+run: AiFrameworkTestApp
+	LD_LIBRARY_PATH=./build ./build/AiFrameworkTestApp
 
 clean:
 	rm -rf build
