@@ -18,25 +18,19 @@
     <ClCompile Include="src\framework_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\gl\gl_renderer.cpp">
+    <ClCompile Include="src\platform\gl\gl_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\gl\vertex_buffer_impl_gl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\gl\shader_impl_gl.cpp">
+    <ClCompile Include="src\graphics\vertex_buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\gl\shader_program_impl_gl.cpp">
+    <ClCompile Include="src\graphics\shader_program.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\gl\quad_vertex_buffer_impl_gl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphics\gl\vertex_impl_gl.cpp">
+    <ClCompile Include="src\graphics\quad_vertex_buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\vertex.cpp">
@@ -45,7 +39,7 @@
     <ClCompile Include="src\graphics\image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphics\gl\texture_impl_gl.cpp">
+    <ClCompile Include="src\graphics\texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\generic\signal_source.cpp">
@@ -67,6 +61,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\framework\base_app.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\gl\open_gl_api.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -156,6 +153,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\gl_renderer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\i_graphics_api.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\platform\gl\open_gl_api.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\graphics_api.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\enums.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

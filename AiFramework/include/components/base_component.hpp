@@ -12,19 +12,14 @@ using namespace ai_framework::graphics;
 
 namespace ai_framework::components {
     struct AI_API BaseComponent {
-        BaseComponent(const FloatVector2 &pos, const FloatVector2 &sz, const Color &col)
-            : position(pos), size(sz), color(col) {
-        }
-
         BaseComponent(const FloatVector2 &pos, const FloatVector2 &sz)
-            : position(pos), size(sz), color(colors::white) {
+            : position(pos), size(sz) {
         }
 
         virtual void draw(BaseApp *app) = 0;
 
         FloatVector2 position;
         FloatVector2 size;
-        Color color;
     };
 } // namespace ai_framework::components
 

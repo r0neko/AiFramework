@@ -28,13 +28,13 @@ void BaseApp::_render() {
 }
 
 void BaseApp::run() {
-    ai_framework::init();
+    ai_framework::shader_init();
 
     if (!start())
         return;
 
-    window->renderer->resize(window->get_size());
     window->show();
+    window->renderer->resize(window->get_size());
 
     while (!window->is_quit_queued()) {
         window->process_events();

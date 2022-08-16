@@ -108,6 +108,7 @@ namespace ai_framework::input {
 
     struct MousePositionEventParam {
         IntVector2 position;
+        ButtonState buttons;
     };
 
     struct KeyUpdateEventParam {
@@ -119,8 +120,7 @@ namespace ai_framework::input {
         void update_position(const IntVector2 &new_position) {
             position = new_position;
 
-            MousePositionEventParam p{
-                position};
+            MousePositionEventParam p{position, (ButtonState) button_state};
             emit("mouse_position_update", &p);
         };
 

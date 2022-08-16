@@ -21,7 +21,7 @@ namespace ai_framework::graphics {
         }
 
         bool created() const {
-            return ebo != -1 && VertexBuffer<T>::created();
+            return ebo != nullptr && VertexBuffer<T>::created();
         }
 
         void create();
@@ -35,7 +35,7 @@ namespace ai_framework::graphics {
         }
 
       private:
-        unsigned int ebo = -1;
+        opaque_t ebo{nullptr};
 
         // to do: make it dynamic
         std::vector<unsigned int> indices = {

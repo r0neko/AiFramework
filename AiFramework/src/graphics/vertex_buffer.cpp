@@ -1,4 +1,4 @@
-#include <glad/glad.h>
+#include <graphics/graphics_api.hpp>
 #include <graphics/vertex_buffer.hpp>
 
 using namespace ai_framework::graphics;
@@ -10,13 +10,13 @@ void VertexBuffer<T>::create() {
 
     is_created = false;
 
-    if (vbo == -1)
-        glGenBuffers(1, &vbo);
+    if (vbo == nullptr)
+        vbo = api->create_buffer();
 
-    if (vao == -1)
-        glGenVertexArrays(1, &vao);
+    if (vao == nullptr)
+        vao = api->create_vertex_array();
 
-    if (vbo == -1 || vao == -1)
+    if (vbo == nullptr || vao == nullptr)
         return;
 
     is_created = true;
@@ -24,14 +24,14 @@ void VertexBuffer<T>::create() {
 
 template <typename T>
 void VertexBuffer<T>::destroy() {
-    if (vbo >= 0) {
-        glDeleteBuffers(1, &vbo);
-        vbo = -1;
+    if (vbo != nullptr) {
+        api->delete_buffer(vbo);
+        vbo = nullptr;
     }
 
-    if (vao >= 0) {
-        glDeleteVertexArrays(1, &vao);
-        vao = -1;
+    if (vao != nullptr) {
+        api->delete_vertex_array(vao);
+        vao = nullptr;
     }
 
     is_created = false;
@@ -42,7 +42,7 @@ void VertexBuffer<T>::bind() {
     if (!created())
         create();
 
-    glBindVertexArray(vao);
+    api->bind_vertex_array(vao);
 }
 
 template <typename T>
@@ -52,8 +52,8 @@ void VertexBuffer<T>::resize() {
 
     bind();
 
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(T) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
+    api->bind_buffer(vbo, BufferType::ARRAY_BUFFER);
+    api->set_buffer_data(BufferType::ARRAY_BUFFER, sizeof(T) * vertices.size(), &vertices[0], UsageMode::DYNAMIC_DRAW);
 
     vertices[0].set_attributes();
 }
@@ -61,8 +61,10 @@ void VertexBuffer<T>::resize() {
 template <typename T>
 void VertexBuffer<T>::draw() {
     vertices[0].use_shader();
+
     bind();
-    glDrawArrays(GL_TRIANGLES, 0, (GLsizei) vertices.size());
+
+    api->draw_buffer(DrawMode::TRIANGLES, 0, (int) vertices.size());
 }
 
 // do template initialization to prevent linking errors

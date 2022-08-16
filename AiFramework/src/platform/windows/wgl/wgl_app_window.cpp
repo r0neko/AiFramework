@@ -1,4 +1,4 @@
-#ifdef _WIN32
+#ifdef _WINDOWS
 #    include <Windows.h>
 
 #    include <framework/error_manager.hpp>

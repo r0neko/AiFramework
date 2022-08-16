@@ -1,4 +1,4 @@
-#ifdef _WIN32
+#ifdef _WINDOWS
 #    include <framework/error_manager.hpp>
 #    include <platform/windows/wgl/wglext.hpp>
 #    include <platform/windows/wgl/wgl_renderer.hpp>
@@ -48,8 +48,6 @@ bool WGLRenderer::init(opaque_t dev_context, const IntVector2 &size) {
     }
 
     int attr[] = {
-        WGL_CONTEXT_MAJOR_VERSION_ARB, 3,
-        WGL_CONTEXT_MINOR_VERSION_ARB, 3,
         WGL_CONTEXT_FLAGS_ARB, 2,
         WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
         0};
@@ -80,8 +78,7 @@ bool WGLRenderer::init(opaque_t dev_context, const IntVector2 &size) {
     printf("Loaded OpenGL %d.%d\n", GLVersion.major, GLVersion.minor);
     printf("OpenGL %s\n", glGetString(GL_VERSION));
 
-    this->size = size;
-    update_ortho();
+    this->resize(size);
 
     return is_init();
 }

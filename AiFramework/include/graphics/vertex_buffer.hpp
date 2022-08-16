@@ -20,7 +20,7 @@ namespace ai_framework::graphics {
         }
 
         bool created() const {
-            return vbo != -1 && vao != -1 && is_created;
+            return vbo != nullptr && vao != nullptr && is_created;
         }
 
         bool can_render() {
@@ -35,8 +35,8 @@ namespace ai_framework::graphics {
         void draw();
 
       protected:
-        unsigned int vbo = -1;
-        unsigned int vao = -1;
+        opaque_t vbo{nullptr};
+        opaque_t vao{nullptr};
 
         bool is_created = false;
         std::vector<T> vertices;

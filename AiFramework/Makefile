@@ -9,7 +9,7 @@ SRC_FILES = $(shell find src -type f -name '*.c*')
 OBJ_FILES = $(patsubst src/%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
 OBJ_FILES_NOTDIR = $(patsubst src/%.cpp, $(OBJ_DIR)/%.o, $(SRC_FILES))
 
-COMPILE_FLAGS = -Os -I./include -I./vendor/glad/include -D_LINUX -D_X11 -D_BUILD_AI_FRAMEWORK
+COMPILE_FLAGS = -Os -I./include -I./vendor/glad/include -D_LINUX -D_X11 -D_GL -D_BUILD_AI_FRAMEWORK
 CXX_FLAGS = -std=c++2a $(COMPILE_FLAGS)
 
 %.o: %.c

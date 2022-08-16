@@ -1,17 +1,12 @@
 #include <components/rectangle_component.hpp>
 #include <framework/shaders_internal.hpp>
-#include <graphics/quad_vertex_buffer.hpp>
 #include <graphics/texture.hpp>
-#include <graphics/vertex.hpp>
 
 using namespace ai_framework::components;
 using namespace ai_framework::graphics;
 using namespace ai_framework::shaders;
 
-QuadVertexBuffer<ColorVertex2D> quad_buffer;
-// Texture test_tex{{"../AiFramework/assets/dank.png"}};
-
-bool r_comp_first_frame = true;
+//Texture test_tex{{"../AiFramework/assets/dank.png"}};
 
 void RectangleComponent::draw(BaseApp *app) {
     if (!r_comp_first_frame && !quad_buffer.can_render())

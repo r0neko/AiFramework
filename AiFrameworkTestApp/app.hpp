@@ -75,8 +75,8 @@ struct TestApp : BaseApp {
     void draw(BaseApp *app) override {
         test_rect.position += rect_units;
 
-        test_rect.draw(app);
         test_btn.draw(app);
+        test_rect.draw(app);
 
         for (auto &a : colection)
             a.draw(app);

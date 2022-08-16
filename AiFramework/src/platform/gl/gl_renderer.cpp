@@ -1,20 +1,19 @@
 #include <graphics/gl_renderer.hpp>
 #include <graphics/shader_program.hpp>
 
-#include <glad/glad.h>
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 // dirty hack incoming!
 #include <framework/shaders_internal.hpp>
+#include <graphics/graphics_api.hpp>
 
 using namespace ai_framework;
 using namespace ai_framework::graphics;
 
 void GLRenderer::clear() {
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    api->set_clear_color(colors::black);
+    api->clear();
 }
 
 void GLRenderer::update_ortho() {
@@ -34,7 +33,7 @@ void GLRenderer::update_ortho() {
 
 void GLRenderer::set_viewport(const IntVector2 &viewport) {
     printf("GLRenderer viewport set to %ix%i\n", viewport.x, viewport.y);
-    glViewport(0, 0, viewport.x, viewport.y);
+    api->set_viewport(viewport);
 }
 
 void GLRenderer::resize(const IntVector2 &new_size) {

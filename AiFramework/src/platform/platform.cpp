@@ -1,6 +1,6 @@
 #include <platform/platform.hpp>
 
-#ifdef _WIN32
+#ifdef _WINDOWS
 #    include <platform/windows/wgl/wgl_app_window.hpp>
 #    include <platform/windows/wgl/wgl_renderer.hpp>
 #elif _LINUX
@@ -10,13 +10,15 @@
 #    endif
 #endif
 
+#ifdef _GL
+#    include <platform/gl/open_gl_api.hpp>
+#endif
+
 using namespace ai_framework;
 
 std::string_view platform::get_platform_name() {
-#ifdef _WIN64
-    return "64-bit Windows";
-#elif _WIN32
-    return "32-bit Windows";
+#ifdef _WINDOWS
+    return "Windows";
 #elif _LINUX
     return "Linux";
 #else
@@ -31,6 +33,14 @@ std::string_view platform::get_renderer_name() {
 #    ifdef _X11
     return "X11/GLX";
 #    endif
+#else
+    return "Unknown";
+#endif
+}
+
+std::string_view platform::get_graphics_api_name() {
+#ifdef _GL
+    return "OpenGL";
 #else
     return "Unknown";
 #endif
@@ -55,6 +65,14 @@ std::shared_ptr<graphics::IRenderer> platform::make_renderer() {
 #    ifdef _X11
     return std::make_shared<platform::linux::graphics::GLXRenderer>();
 #    endif
+#else
+    return {nullptr};
+#endif
+}
+
+std::shared_ptr<graphics::IGraphicsAPI> platform::make_graphics_api() {
+#ifdef _GL
+    return std::make_shared<api::OpenGLAPI>();
 #else
     return {nullptr};
 #endif

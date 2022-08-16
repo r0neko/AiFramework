@@ -1,4 +1,4 @@
-#include <glad/glad.h>
+#include <graphics/graphics_api.hpp>
 #include <graphics/quad_vertex_buffer.hpp>
 
 using namespace ai_framework::graphics;
@@ -13,10 +13,10 @@ void QuadVertexBuffer<T>::create() {
     if (!VertexBuffer<T>::created())
         return;
 
-    if (ebo == -1)
-        glGenBuffers(1, &ebo);
+    if (ebo == nullptr)
+        ebo = api->create_buffer();
 
-    if (ebo == -1)
+    if (ebo == nullptr)
         return;
 }
 
@@ -26,15 +26,15 @@ void QuadVertexBuffer<T>::bind() {
         create();
 
     VertexBuffer<T>::bind();
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+    api->bind_buffer(ebo, BufferType::ELEMENT_ARRAY_BUFFER);
 }
 
 template <typename T>
 void QuadVertexBuffer<T>::resize() {
     bind();
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
-
     VertexBuffer<T>::resize();
+
+    api->set_buffer_data(BufferType::ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], UsageMode::DYNAMIC_DRAW);
 }
 
 template <typename T>
@@ -45,7 +45,7 @@ void QuadVertexBuffer<T>::draw() {
 
     VertexBuffer<T>::vertices[0].use_shader();
     bind();
-    glDrawElements(GL_TRIANGLES, (GLsizei) indices.size(), GL_UNSIGNED_INT, 0);
+    api->draw_elements(DrawMode::TRIANGLES, 0, indices.size(), DataType::UNSIGNED_INT);
 }
 
 // do template initialization to prevent linking errors

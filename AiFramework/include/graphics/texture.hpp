@@ -15,7 +15,7 @@ namespace ai_framework::graphics {
         }
 
         bool is_created() const {
-            return tex_id != -1;
+            return tex_id != nullptr;
         }
 
         void create();
@@ -23,7 +23,7 @@ namespace ai_framework::graphics {
         void use();
 
       private:
-        unsigned int tex_id = -1;
+        opaque_t tex_id{nullptr};
         Image texture;
     };
 } // namespace ai_framework::graphics

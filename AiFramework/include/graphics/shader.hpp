@@ -2,14 +2,12 @@
 #define SHADER_HPP
 
 #include <framework_build.hpp>
+#include <graphics/enums.hpp>
 
 #include <string>
 #include <vector>
 
 namespace ai_framework::graphics {
-    enum class ShaderType { FRAGMENT,
-                            VERTEX };
-
     /// <summary>
     /// A base Shader class that handles the most basic operations, like loading/destruction and compilation/linking, using the right graphics system calls.
     /// </summary>
@@ -30,12 +28,12 @@ namespace ai_framework::graphics {
             return is_compiled;
         }
 
-        unsigned int id() const {
+        opaque_t id() const {
             return shader_id;
         }
 
       private:
-        unsigned int shader_id = -1;
+        opaque_t shader_id{nullptr};
 
         bool is_compiled = false;
         std::string name;
