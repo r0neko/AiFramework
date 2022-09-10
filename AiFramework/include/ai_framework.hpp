@@ -2,6 +2,7 @@
 #define AI_FRAMEWORK_HPP
 
 #include <generic/vector2.hpp>
+#include <generic/logger.hpp>
 
 #include <framework/base_app.hpp>
 #include <framework/error_manager.hpp>

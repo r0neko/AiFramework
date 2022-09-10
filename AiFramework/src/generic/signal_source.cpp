@@ -1,11 +1,14 @@
 #include <generic/signal_source.hpp>
+#include <generic/logger.hpp>
 
 using namespace ai_framework;
+
+CLogger _signal_logger("SignalSource");
 
 void SignalSource::listen(std::string_view type, SignalDelegateFunc listener) {
     auto l = SignalDelegate(new SignalDelegateFunc(listener));
     signal_delegates[type.data()].push_back(l);
-    printf("Registered listener for '%s'!\n", type.data());
+    _signal_logger.log(LoggerLevel::DEBUG, "Registered listener for '%s'!", type.data());
 }
 
 void SignalSource::dismiss(std::string_view type, SignalDelegate listener) {
@@ -17,14 +20,14 @@ void SignalSource::dismiss(std::string_view type, SignalDelegate listener) {
 }
 
 void SignalSource::emit(std::string_view type, void *data) {
-    //printf("Dispatching signal '%s'...\n", type.data());
+    //_signal_logger.log(LoggerLevel::DEBUG, "Dispatching signal '%s'...", type.data());
 
     if (!signal_delegates.contains(type.data()))
         return;
 
     auto listeners = signal_delegates[type.data()];
 
-    //printf("Dispatching to %zi listeners!\n", listeners.size());
+    //_signal_logger.log(LoggerLevel::DEBUG, "Dispatching to %zi listeners!", listeners.size());
 
     for (auto e : listeners)
         (*e)(data);

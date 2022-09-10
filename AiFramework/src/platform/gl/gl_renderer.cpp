@@ -8,8 +8,12 @@
 #include <framework/shaders_internal.hpp>
 #include <graphics/graphics_api.hpp>
 
+#include <generic/logger.hpp>
+
 using namespace ai_framework;
 using namespace ai_framework::graphics;
+
+CLogger _gl_renderer_logger("GLRenderer");
 
 void GLRenderer::clear() {
     api->set_clear_color(colors::black);
@@ -17,7 +21,7 @@ void GLRenderer::clear() {
 }
 
 void GLRenderer::update_ortho() {
-    printf("update ortho!\n");
+    _gl_renderer_logger.log(LoggerLevel::DEBUG, "update ortho!");
     auto ortho = glm::orthoZO(0.f, (float) size.x, (float) size.y, 0.f, -1.f, 1.f);
 
     // dirty hack for now
@@ -32,7 +36,7 @@ void GLRenderer::update_ortho() {
 }
 
 void GLRenderer::set_viewport(const IntVector2 &viewport) {
-    printf("GLRenderer viewport set to %ix%i\n", viewport.x, viewport.y);
+    _gl_renderer_logger.log(LoggerLevel::DEBUG, "GLRenderer viewport set to %ix%i", viewport.x, viewport.y);
     api->set_viewport(viewport);
 }
 

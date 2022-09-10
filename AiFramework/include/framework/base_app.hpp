@@ -27,7 +27,6 @@ namespace ai_framework::framework {
             return true;
         };
 
-      private:
         void _render();
     };
 } // namespace ai_framework::framework

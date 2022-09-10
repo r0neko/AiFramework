@@ -9,7 +9,7 @@ using namespace ai_framework::components;
 
 struct TestApp : BaseApp {
     bool start() override {
-        printf("App start!\n");
+        app_logger.log(LoggerLevel::DEBUG, "App start!");
 
         window->input_manager.listen("mouse_state_update", [&](void *param) {
             auto ev = (MouseStateEventParam *) param;
@@ -63,7 +63,7 @@ struct TestApp : BaseApp {
         });
 
         test_btn.listen("click", [&](void *) {
-            printf("doing some cleaning! we have to kill %zi components\n", colection.size());
+            app_logger.log(LoggerLevel::DEBUG, "doing some cleaning! we have to kill %zi components", colection.size());
             colection.clear();
         });
 
@@ -91,6 +91,8 @@ struct TestApp : BaseApp {
     std::vector<RectangleComponent> colection;
 
     FloatVector2 rect_units;
+    CLogger app_logger{
+        "App"};
 };
 
 #endif

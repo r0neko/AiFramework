@@ -1,5 +1,6 @@
 #include <graphics/graphics_api.hpp>
 #include <graphics/shader.hpp>
+#include <generic/logger.hpp>
 
 #include <fstream>
 #include <iostream>
@@ -8,6 +9,8 @@
 #include <stdexcept>
 
 using namespace ai_framework::graphics;
+
+CLogger _shader_logger("Shader");
 
 Shader Shader::from_file(std::string_view name, std::string_view path, ShaderType type) {
     std::ifstream inFile;
@@ -32,10 +35,10 @@ bool Shader::compile() {
     is_compiled = api->compile_shader(shader_id);
 
     if (!is_compiled) {
-        printf("Shader::compile - failed to compile shader '%s' :(\n", name.c_str());
-        printf("%s\n", api->get_shader_log(shader_id).c_str());
+        _shader_logger.log(LoggerLevel::DEBUG, "compile - failed to compile shader '%s' :(", name.c_str());
+        _shader_logger.log(LoggerLevel::DEBUG, "%s", api->get_shader_log(shader_id).c_str());
     } else
-        printf("Shader::compile - shader '%s' compiled successfully!\n", name.c_str());
+        _shader_logger.log(LoggerLevel::DEBUG, "compile - shader '%s' compiled successfully!", name.c_str());
 
     return is_compiled;
 }

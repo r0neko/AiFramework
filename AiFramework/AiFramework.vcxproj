@@ -23,6 +23,7 @@
     <ClCompile Include="src\components\rectangle_component.cpp" />
     <ClCompile Include="src\framework\base_app.cpp" />
     <ClCompile Include="src\framework_main.cpp" />
+    <ClCompile Include="src\generic\logger.cpp" />
     <ClCompile Include="src\platform\gl\open_gl_api.cpp" />
     <ClCompile Include="src\platform\platform.cpp" />
     <ClCompile Include="src\generic\signal_source.cpp" />
@@ -48,6 +49,7 @@
     <ClInclude Include="include\framework\shaders_internal.hpp" />
     <ClInclude Include="include\framework_build.hpp" />
     <ClInclude Include="include\framework_main.hpp" />
+    <ClInclude Include="include\generic\logger.hpp" />
     <ClInclude Include="include\generic\signal_source.hpp" />
     <ClInclude Include="include\generic\singleton.hpp" />
     <ClInclude Include="include\generic\vector2.hpp" />

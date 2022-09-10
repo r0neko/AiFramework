@@ -35,7 +35,7 @@ bool GLXAppWindow::init() {
     display = XOpenDisplay(0);
 
     if (display == nullptr) {
-        printf("ERROR: Cannot connect to X Server!\n");
+        printf("ERROR: Cannot connect to X Server!");
         return false;
     }
 
@@ -43,7 +43,7 @@ bool GLXAppWindow::init() {
     auto glx_vi = glXChooseVisual(display, 0, glx_attr);
 
     if (glx_vi == NULL) {
-        printf("no appropriate glx_visual found\n\n");
+        printf("no appropriate glx_visual found\n");
         return false;
     }
 

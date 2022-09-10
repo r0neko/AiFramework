@@ -2,6 +2,7 @@
 #define FRAMEWORK_MAIN_HPP
 
 #include <framework_build.hpp>
+#include <framework/base_app.hpp>
 
 namespace ai_framework {
     void AI_API init();
