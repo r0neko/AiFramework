@@ -6,7 +6,7 @@ using namespace ai_framework::components;
 using namespace ai_framework::graphics;
 using namespace ai_framework::shaders;
 
-//Texture test_tex{{"../AiFramework/assets/dank.png"}};
+//Texture test_tex{{"./assets/dank.png"}};
 
 void RectangleComponent::draw(BaseApp *app) {
     if (!r_comp_first_frame && !quad_buffer.can_render())

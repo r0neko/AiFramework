@@ -23,13 +23,13 @@ void ai_framework::shader_init() {
         return;
 
     // don't load this 100 times! load it only once
-    auto color_v2d_fragment = Shader::from_file("ColorVertex2D", "../AiFramework/shader/ColorVertex2D.fs", ShaderType::FRAGMENT);
+    auto color_v2d_fragment = Shader::from_file("ColorVertex2D", "./shader/ColorVertex2D.fs", ShaderType::FRAGMENT);
 
     if (!vertex_2d_shader.compiled()) {
         _fwk_logger.log(LoggerLevel::DEBUG, "Vertex2D shader compilation...");
 
         vertex_2d_shader.add_shader(color_v2d_fragment);
-        vertex_2d_shader.add_shader(Shader::from_file("Vertex2D", "../AiFramework/shader/Vertex2D.vs", ShaderType::VERTEX));
+        vertex_2d_shader.add_shader(Shader::from_file("Vertex2D", "./shader/Vertex2D.vs", ShaderType::VERTEX));
 
         if (vertex_2d_shader.compile())
             _fwk_logger.log(LoggerLevel::DEBUG, "Vertex2D was compiled!");
@@ -41,7 +41,7 @@ void ai_framework::shader_init() {
         _fwk_logger.log(LoggerLevel::DEBUG, "ColorVertex2D shader compilation...");
 
         color_vertex_2d_shader.add_shader(color_v2d_fragment);
-        color_vertex_2d_shader.add_shader(Shader::from_file("ColorVertex2D", "../AiFramework/shader/ColorVertex2D.vs", ShaderType::VERTEX));
+        color_vertex_2d_shader.add_shader(Shader::from_file("ColorVertex2D", "./shader/ColorVertex2D.vs", ShaderType::VERTEX));
 
         if (color_vertex_2d_shader.compile())
             _fwk_logger.log(LoggerLevel::DEBUG, "ColorVertex2D was compiled!");
@@ -52,8 +52,8 @@ void ai_framework::shader_init() {
     if (!textured_vertex_2d_shader.compiled()) {
         _fwk_logger.log(LoggerLevel::DEBUG, "TexturedVertex2D shader compilation...");
 
-        textured_vertex_2d_shader.add_shader(Shader::from_file("TexturedVertex2D", "../AiFramework/shader/TexturedVertex2D.fs", ShaderType::FRAGMENT));
-        textured_vertex_2d_shader.add_shader(Shader::from_file("TexturedVertex2D", "../AiFramework/shader/TexturedVertex2D.vs", ShaderType::VERTEX));
+        textured_vertex_2d_shader.add_shader(Shader::from_file("TexturedVertex2D", "./shader/TexturedVertex2D.fs", ShaderType::FRAGMENT));
+        textured_vertex_2d_shader.add_shader(Shader::from_file("TexturedVertex2D", "./shader/TexturedVertex2D.vs", ShaderType::VERTEX));
 
         if (textured_vertex_2d_shader.compile())
             _fwk_logger.log(LoggerLevel::DEBUG, "TexturedVertex2D was compiled!");
