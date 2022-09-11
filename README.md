@@ -8,7 +8,7 @@ Yet another game framework, being my third attempt at making one.
 
 # Test Application
 
-The test application was moved to a separate repository for organizational reasons.
+The test application was moved to a separate repository for organizational reasons, which can be found here: https://github.com/r0neko/AiFrameworkTestApp
 
 # Requirements - Windows(vcpkg)
 
