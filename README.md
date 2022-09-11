@@ -20,6 +20,13 @@ vcpkg install glad[wgl]:x86-windows-static-md opengl:x86-windows-static-md glm:x
 
 Don't forget to use Visual Studio for this to work! (in the future you'll be able to use CMake too, or maybe you can ditch Visual Studio altogether)
 
+## Experimental CMake Support
+
+I'm not good at talking CMake, so feel free to point out everything I did wrong. I made an experimental CMake file which will help compile AiFramework. It was tested only on Windows.
+
+To use it in an IDE like CLion, please make sure that you define the vcpkg toolchain path. For example: `-DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake`
+The library will be outputted in the `build_dir/output` directory. You should also output your executable in the same directory. Maybe this will be fixed in a future update.
+
 # Requirements - Linux
 
 You are a Linux gamer? No problem! To compile AiFramework, just run our professional grade building script like this...
