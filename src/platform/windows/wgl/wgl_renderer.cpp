@@ -3,7 +3,7 @@
 #    include <platform/windows/wgl/wglext.hpp>
 #    include <platform/windows/wgl/wgl_renderer.hpp>
 
-#    include <Windows.h>
+#    include <wingdi.h>
 
 #    include <glad/glad.h>
 #    include <glad/glad_wgl.h>
@@ -14,7 +14,7 @@ using namespace ai_framework::graphics;
 using namespace ai_framework::platform::windows::graphics;
 using namespace ai_framework::framework;
 
-// TO DO: look at https://stackoverflow.com/questions/46655372/create-modern-opengl-context-using-wgl for an reference on how to properly init WGL
+// TO DO: look at https://stackoverflow.com/questions/46655372/create-modern-opengl-context-using-wgl for a reference on how to properly init WGL
 
 bool WGLRenderer::init(opaque_t dev_context, const IntVector2 &size) {
     PIXELFORMATDESCRIPTOR pfd{0};

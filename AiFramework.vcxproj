@@ -138,19 +138,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)build\</OutDir>
-    <IntDir>$(SolutionDir)build\.temp\framework\</IntDir>
+    <IntDir>$(SolutionDir)build\.temp\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)build\</OutDir>
-    <IntDir>$(SolutionDir)build\.temp\framework\</IntDir>
+    <IntDir>$(SolutionDir)build\.temp\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)build\</OutDir>
-    <IntDir>$(SolutionDir)build\.temp\framework\</IntDir>
+    <IntDir>$(SolutionDir)build\.temp\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)build\</OutDir>
-    <IntDir>$(SolutionDir)build\.temp\framework\</IntDir>
+    <IntDir>$(SolutionDir)build\.temp\</IntDir>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <VcpkgTriplet>x86-windows-static-md</VcpkgTriplet>

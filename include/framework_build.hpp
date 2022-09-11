@@ -1,7 +1,7 @@
 #ifndef AI_FRAMEWORK_BUILD_HPP
 #define AI_FRAMEWORK_BUILD_HPP
 
-#ifdef _WIN32
+#ifdef _WINDOWS
 #    pragma warning(disable : 4251)
 #    define AI_API_IMPORT __declspec(dllimport)
 #    define AI_API_EXPORT __declspec(dllexport)
