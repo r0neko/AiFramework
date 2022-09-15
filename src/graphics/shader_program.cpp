@@ -55,7 +55,7 @@ void IShaderProgram::set(std::string_view uniform, const glm::mat4 &mat) {
     api->use_program(program_id);
     auto uf_loc = api->get_uniform(program_id, uniform);
 
-    if (uf_loc != GRAPHICS_API_NULL)
+    if (uf_loc != AI_FRAMEWORK_NULL)
         api->uniform_set(uf_loc, mat);
     else
         _shader_program_logger.log(LoggerLevel::DEBUG, "uniform '%s' could not be found!", uniform.data());

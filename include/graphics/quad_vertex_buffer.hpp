@@ -7,6 +7,8 @@
 
 #include <vector>
 
+#include <cstdint>
+
 namespace ai_framework::graphics {
     template <typename T>
     struct AI_API QuadVertexBuffer : VertexBuffer<T> {
@@ -21,7 +23,7 @@ namespace ai_framework::graphics {
         }
 
         bool created() const {
-            return ebo != nullptr && VertexBuffer<T>::created();
+            return ebo != AI_FRAMEWORK_NULL && VertexBuffer<T>::created();
         }
 
         void create();
@@ -35,7 +37,7 @@ namespace ai_framework::graphics {
         }
 
       private:
-        opaque_t ebo{nullptr};
+        std::uintptr_t ebo{AI_FRAMEWORK_NULL};
 
         // to do: make it dynamic
         std::vector<unsigned int> indices = {

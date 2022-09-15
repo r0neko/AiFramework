@@ -5,6 +5,8 @@
 
 #include <graphics/image.hpp>
 
+#include <cstdint>
+
 namespace ai_framework::graphics {
     struct AI_API Texture {
         Texture() {
@@ -15,7 +17,7 @@ namespace ai_framework::graphics {
         }
 
         bool is_created() const {
-            return tex_id != nullptr;
+            return tex_id != AI_FRAMEWORK_NULL;
         }
 
         void create();
@@ -23,7 +25,7 @@ namespace ai_framework::graphics {
         void use();
 
       private:
-        opaque_t tex_id{nullptr};
+        std::uintptr_t tex_id{AI_FRAMEWORK_NULL};
         Image texture;
     };
 } // namespace ai_framework::graphics

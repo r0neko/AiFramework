@@ -6,6 +6,8 @@
 
 #include <vector>
 
+#include <cstdint>
+
 namespace ai_framework::graphics {
     template <typename T>
     struct AI_API VertexBuffer {
@@ -20,7 +22,7 @@ namespace ai_framework::graphics {
         }
 
         bool created() const {
-            return vbo != nullptr && vao != nullptr && is_created;
+            return vbo != AI_FRAMEWORK_NULL && vao != AI_FRAMEWORK_NULL && is_created;
         }
 
         bool can_render() {
@@ -35,8 +37,8 @@ namespace ai_framework::graphics {
         void draw();
 
       protected:
-        opaque_t vbo{nullptr};
-        opaque_t vao{nullptr};
+        std::uintptr_t vbo{AI_FRAMEWORK_NULL};
+        std::uintptr_t vao{AI_FRAMEWORK_NULL};
 
         bool is_created = false;
         std::vector<T> vertices;

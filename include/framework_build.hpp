@@ -1,6 +1,8 @@
 #ifndef AI_FRAMEWORK_BUILD_HPP
 #define AI_FRAMEWORK_BUILD_HPP
 
+#include <cstdint>
+
 #ifdef _WINDOWS
 #    pragma warning(disable : 4251)
 #    define AI_API_IMPORT __declspec(dllimport)
@@ -27,6 +29,7 @@
 #endif
 
 using opaque_t = void *;
+#define AI_FRAMEWORK_NULL (std::uintptr_t) -1
 
 #ifdef _LINUX
 #    ifdef _X11

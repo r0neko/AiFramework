@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 
+#include <cstdint>
+
 namespace ai_framework::graphics {
     /// <summary>
     /// A base Shader class that handles the most basic operations, like loading/destruction and compilation/linking, using the right graphics system calls.
@@ -28,12 +30,12 @@ namespace ai_framework::graphics {
             return is_compiled;
         }
 
-        opaque_t id() const {
+        std::uintptr_t id() const {
             return shader_id;
         }
 
       private:
-        opaque_t shader_id{nullptr};
+        std::uintptr_t shader_id{AI_FRAMEWORK_NULL};
 
         bool is_compiled = false;
         std::string name;

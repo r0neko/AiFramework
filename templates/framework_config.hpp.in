@@ -1,10 +1,18 @@
 #ifndef FRAMEWORK_CONFIG_HPP
 #define FRAMEWORK_CONFIG_HPP
 
-#define AI_FRAMEWORK_MAJOR @AiFramework_VERSION_MAJOR@
-#define AI_FRAMEWORK_MINOR @AiFramework_VERSION_MINOR@
-#define AI_FRAMEWORK_PATCH @AiFramework_VERSION_PATCH@
+#include <string>
 
-#define AI_FRAMEWORK_VERSION_STRING "@AiFramework_VERSION_MAJOR@.@AiFramework_VERSION_MINOR@.@AiFramework_VERSION_PATCH@"
+namespace ai_framework::config {
+    namespace version {
+        constexpr auto major = @AiFramework_VERSION_MAJOR@;
+        constexpr auto minor = @AiFramework_VERSION_MINOR@;
+        constexpr auto patch = @AiFramework_VERSION_PATCH@;
+
+        inline std::string to_string() {
+            return std::to_string(major) + '.' + std::to_string(minor) + '.' + std::to_string(patch);
+        }
+    }
+}
 
 #endif

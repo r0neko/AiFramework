@@ -10,13 +10,13 @@ void VertexBuffer<T>::create() {
 
     is_created = false;
 
-    if (vbo == nullptr)
+    if (vbo == AI_FRAMEWORK_NULL)
         vbo = api->create_buffer();
 
-    if (vao == nullptr)
+    if (vao == AI_FRAMEWORK_NULL)
         vao = api->create_vertex_array();
 
-    if (vbo == nullptr || vao == nullptr)
+    if (vbo == AI_FRAMEWORK_NULL || vao == AI_FRAMEWORK_NULL)
         return;
 
     is_created = true;
@@ -24,14 +24,14 @@ void VertexBuffer<T>::create() {
 
 template <typename T>
 void VertexBuffer<T>::destroy() {
-    if (vbo != nullptr) {
+    if (vbo != AI_FRAMEWORK_NULL) {
         api->delete_buffer(vbo);
-        vbo = nullptr;
+        vbo = AI_FRAMEWORK_NULL;
     }
 
-    if (vao != nullptr) {
+    if (vao != AI_FRAMEWORK_NULL) {
         api->delete_vertex_array(vao);
-        vao = nullptr;
+        vao = AI_FRAMEWORK_NULL;
     }
 
     is_created = false;
@@ -68,6 +68,6 @@ void VertexBuffer<T>::draw() {
 }
 
 // do template initialization to prevent linking errors
-template struct VertexBuffer<Vertex2D>;
-template struct VertexBuffer<ColorVertex2D>;
-template struct VertexBuffer<TexturedVertex2D>;
+template struct graphics::VertexBuffer<Vertex2D>;
+template struct graphics::VertexBuffer<ColorVertex2D>;
+template struct graphics::VertexBuffer<TexturedVertex2D>;

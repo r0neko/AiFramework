@@ -27,7 +27,7 @@ void Texture::create() {
 void Texture::destroy() {
     if (is_created()) {
         graphics::api->delete_texture(tex_id);
-        tex_id = nullptr;
+        tex_id = AI_FRAMEWORK_NULL;
     }
 }
 

@@ -1,5 +1,5 @@
-#ifndef WGL_RENDERER_HPP
-#define WGL_RENDERER_HPP
+#ifndef X11_RENDERER_HPP
+#define X11_RENDERER_HPP
 
 #include <GL/glx.h>
 #include <X11/X.h>

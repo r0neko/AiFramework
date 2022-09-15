@@ -27,7 +27,7 @@ Shader Shader::from_file(std::string_view name, std::string_view path, ShaderTyp
 }
 
 bool Shader::compile() {
-    if (shader_id == nullptr)
+    if (shader_id == AI_FRAMEWORK_NULL)
         shader_id = api->create_shader(type);
 
     api->set_shader_source(shader_id, data);

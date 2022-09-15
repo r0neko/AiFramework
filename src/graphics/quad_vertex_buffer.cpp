@@ -13,10 +13,10 @@ void QuadVertexBuffer<T>::create() {
     if (!VertexBuffer<T>::created())
         return;
 
-    if (ebo == nullptr)
+    if (ebo == AI_FRAMEWORK_NULL)
         ebo = api->create_buffer();
 
-    if (ebo == nullptr)
+    if (ebo == AI_FRAMEWORK_NULL)
         return;
 }
 
@@ -49,6 +49,6 @@ void QuadVertexBuffer<T>::draw() {
 }
 
 // do template initialization to prevent linking errors
-template struct QuadVertexBuffer<Vertex2D>;
-template struct QuadVertexBuffer<ColorVertex2D>;
-template struct QuadVertexBuffer<TexturedVertex2D>;
+template struct graphics::QuadVertexBuffer<Vertex2D>;
+template struct graphics::QuadVertexBuffer<ColorVertex2D>;
+template struct graphics::QuadVertexBuffer<TexturedVertex2D>;

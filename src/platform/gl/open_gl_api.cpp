@@ -1,5 +1,9 @@
 #ifdef _GL
+#ifdef _ANDROID
+#    include <GLES3/gl3.h>
+#else
 #    include <glad/glad.h>
+#endif
 #    include <platform/gl/open_gl_api.hpp>
 
 #    include <stdexcept>
@@ -83,18 +87,18 @@ void OpenGLAPI::upload_texture(const Image &tex) {
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tex.size.x, tex.size.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, tex.pixels.data());
 }
 
-opaque_t OpenGLAPI::create_texture() {
-    opaque_t x{nullptr};
+std::uintptr_t OpenGLAPI::create_texture() {
+    std::uintptr_t x{AI_FRAMEWORK_NULL};
 
     glGenTextures(1, (GLuint *) &x);
     return x;
 }
 
-void OpenGLAPI::delete_texture(opaque_t texture) {
+void OpenGLAPI::delete_texture(std::uintptr_t texture) {
     glDeleteTextures(1, (GLuint *) &texture);
 }
 
-void OpenGLAPI::bind_texture(opaque_t texture) {
+void OpenGLAPI::bind_texture(std::uintptr_t texture) {
     glBindTexture(GL_TEXTURE_2D, (GLuint) texture);
 }
 
@@ -115,33 +119,33 @@ void OpenGLAPI::define_vertex_attribute(unsigned int attribute, int count, DataT
     glVertexAttribPointer(attribute, count, _type, 0, stride, (void *) offset);
 }
 
-opaque_t OpenGLAPI::create_buffer() {
-    opaque_t x{nullptr};
+std::uintptr_t OpenGLAPI::create_buffer() {
+    std::uintptr_t x{AI_FRAMEWORK_NULL};
 
     glGenBuffers(1, (GLuint *) &x);
     return x;
 }
 
-void OpenGLAPI::delete_buffer(opaque_t buffer) {
+void OpenGLAPI::delete_buffer(std::uintptr_t buffer) {
     glDeleteTextures(1, (GLuint *) &buffer);
 }
 
-opaque_t OpenGLAPI::create_vertex_array() {
-    opaque_t x{nullptr};
+std::uintptr_t OpenGLAPI::create_vertex_array() {
+    std::uintptr_t x{AI_FRAMEWORK_NULL};
 
     glGenBuffers(1, (GLuint *) &x);
     return x;
 }
 
-void OpenGLAPI::delete_vertex_array(opaque_t buffer) {
+void OpenGLAPI::delete_vertex_array(std::uintptr_t buffer) {
     glDeleteVertexArrays(1, (GLuint *) &buffer);
 }
 
-void OpenGLAPI::bind_vertex_array(opaque_t buffer) {
+void OpenGLAPI::bind_vertex_array(std::uintptr_t buffer) {
     glBindVertexArray((GLuint) buffer);
 }
 
-void OpenGLAPI::bind_buffer(opaque_t buffer, BufferType type) {
+void OpenGLAPI::bind_buffer(std::uintptr_t buffer, BufferType type) {
     auto _type = buffer_type_to_gl_enum(type);
 
     if (_type == GL_NONE)
@@ -172,20 +176,20 @@ void OpenGLAPI::draw_buffer(DrawMode mode, int start, size_t size) {
     glDrawArrays(_mode, start, size);
 }
 
-opaque_t OpenGLAPI::create_program() {
+std::uintptr_t OpenGLAPI::create_program() {
     auto p = glCreateProgram();
-    return (opaque_t) p;
+    return (std::uintptr_t) p;
 }
 
-void OpenGLAPI::use_program(opaque_t program) {
+void OpenGLAPI::use_program(std::uintptr_t program) {
     glUseProgram((GLuint) program);
 }
 
-void OpenGLAPI::attach_shader_to_program(opaque_t program, opaque_t shader) {
+void OpenGLAPI::attach_shader_to_program(std::uintptr_t program, std::uintptr_t shader) {
     glAttachShader((GLuint) program, (GLuint) shader);
 }
 
-bool OpenGLAPI::link_program(opaque_t program) {
+bool OpenGLAPI::link_program(std::uintptr_t program) {
     int ret;
 
     glLinkProgram((GLuint) program);
@@ -194,7 +198,7 @@ bool OpenGLAPI::link_program(opaque_t program) {
     return ret == GL_TRUE;
 }
 
-std::string OpenGLAPI::get_program_log(opaque_t program) {
+std::string OpenGLAPI::get_program_log(std::uintptr_t program) {
     int log_len = 0;
     std::string program_log = "none";
 
@@ -208,14 +212,14 @@ std::string OpenGLAPI::get_program_log(opaque_t program) {
     return program_log;
 }
 
-opaque_t OpenGLAPI::get_uniform(opaque_t program, std::string_view uniform) {
+std::uintptr_t OpenGLAPI::get_uniform(std::uintptr_t program, std::string_view uniform) {
     auto uf = glGetUniformLocation((GLuint) program, uniform.data());
     if (uf <= -1)
-        return GRAPHICS_API_NULL;
-    return (opaque_t) uf;
+        return AI_FRAMEWORK_NULL;
+    return (std::uintptr_t) uf;
 }
 
-opaque_t OpenGLAPI::create_shader(ShaderType type) {
+std::uintptr_t OpenGLAPI::create_shader(ShaderType type) {
     auto _type = shader_type_to_gl_enum(type);
 
     if (_type == GL_NONE)
@@ -223,10 +227,10 @@ opaque_t OpenGLAPI::create_shader(ShaderType type) {
 
     auto s = glCreateShader(_type);
 
-    return (opaque_t) s;
+    return (std::uintptr_t) s;
 }
 
-void OpenGLAPI::set_shader_source(opaque_t shader, std::string_view source) {
+void OpenGLAPI::set_shader_source(std::uintptr_t shader, std::string_view source) {
     GLint s = source.size();
 
     // messy way
@@ -236,7 +240,7 @@ void OpenGLAPI::set_shader_source(opaque_t shader, std::string_view source) {
     glShaderSource((GLuint) shader, 1, x, size);
 }
 
-bool OpenGLAPI::compile_shader(opaque_t shader) {
+bool OpenGLAPI::compile_shader(std::uintptr_t shader) {
     int ret;
 
     glCompileShader((GLuint) shader);
@@ -245,7 +249,7 @@ bool OpenGLAPI::compile_shader(opaque_t shader) {
     return ret == GL_TRUE;
 }
 
-std::string OpenGLAPI::get_shader_log(opaque_t shader) {
+std::string OpenGLAPI::get_shader_log(std::uintptr_t shader) {
     int log_len = 0;
     std::string shader_log = "none";
 
@@ -259,11 +263,11 @@ std::string OpenGLAPI::get_shader_log(opaque_t shader) {
     return shader_log;
 }
 
-void OpenGLAPI::delete_shader(opaque_t shader) {
+void OpenGLAPI::delete_shader(std::uintptr_t shader) {
     glDeleteShader((GLuint) shader);
 }
 
-void OpenGLAPI::uniform_set(opaque_t uniform, const glm::mat4 &mat) {
+void OpenGLAPI::uniform_set(std::uintptr_t uniform, const glm::mat4 &mat) {
     glUniformMatrix4fv((GLint) uniform, 1, GL_FALSE, &mat[0][0]);
 }
 

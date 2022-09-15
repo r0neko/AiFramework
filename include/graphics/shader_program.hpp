@@ -9,12 +9,14 @@
 
 #include <glm/glm.hpp>
 
+#include <cstdint>
+
 namespace ai_framework::graphics {
     struct AI_API IShaderProgram {
         void set(std::string_view uniform, const glm::mat4 &mat);
 
       protected:
-        opaque_t program_id{nullptr};
+        std::uintptr_t program_id{AI_FRAMEWORK_NULL};
     };
 
     /// <summary>
@@ -30,7 +32,7 @@ namespace ai_framework::graphics {
         }
 
         bool compiled() const {
-            return is_compiled || program_id != nullptr;
+            return is_compiled || program_id != AI_FRAMEWORK_NULL;
         }
 
         void use();
